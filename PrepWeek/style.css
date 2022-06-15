@@ -25,25 +25,37 @@ header {
     flex-direction: column;
     background-color: #f9f9f9;
   }
-  .info-section {
+  .earlyLife {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin: auto;
     padding: 0px 10px;
-    height: 400px;
+    height: fit-content;
     border-bottom: 2px solid pink;
     border-top: 2px solid pink;
     max-width: 800px;
   }
-  img {
-    max-width:100%;
-    max-height:100%;
-  }
-  .left {
+  .info-section {
     display: flex;
     justify-content: center;
-    width: 40%;
-    padding: 1.5%;
+    flex-direction: row;
+  }
+  .extendText{
+    display: flex;
+    justify-content: flex-start;
+
+  }
+  img {
+    max-width:350px;
+    max-height:300px;
+  }
+  .RightDiv{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 47px;
+    max-width: 45%;
     /* background-origin: content-box;
     background-image: url(./steve\ 1.jpg);
     background-repeat: no-repeat;
@@ -54,7 +66,7 @@ header {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    width: 60%;
+    width: 55%;
     padding: 0.5vw 1vw;
   }
 
@@ -66,9 +78,10 @@ header {
   }
   p { 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 345px;
   }
+
 
 
 
