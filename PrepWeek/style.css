@@ -1,41 +1,40 @@
-*{
+  *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    
   }
-header {
+  header {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     height: 60px;
     padding: 15px;
+    border-bottom: 2px solid pink;
   }
   .heading {
     margin: 0px 6px 0px 6px;
+    
   }
-
   main {
     height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
   }
-  .info-section {
+  .info-section_LTR ,.info-section_RTL {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 20px auto;
-    height: fit-content;
+    margin: 5px auto 0px auto;
+    padding-bottom: 10px;
     border-bottom: 2px solid pink;
-    border-top: 2px solid pink;
-    max-width: 700px;
+    width: 700px;
     font: 14px/22px Georgia, serif;
+  }
+  .info-section_RTL {
+    flex-direction: row-reverse;
   }
 
   .extendText{
@@ -44,30 +43,34 @@ header {
 
   }
   img {
-    max-width: 400px;
+    max-width: 100%;
     max-height: 350px;
-    padding-right: 25px;
+
   }
-  .RightDiv{
+  .Pic{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 50px;
-    max-width: 40%;
+    margin: auto;
+    width: 40%;
+    padding: 0;
     /* background-origin: content-box;
     background-image: url(./steve\ 1.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; */
   }
-  .section_header {
+  .section_header_LTR ,.section_header_RTL{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     width: 60%;
-    padding: 15px 0px;
+    padding-top: 15px;
   }
-
+  .section_header_RTL {
+    align-items: flex-end;
+    padding-left: 20px;
+  }
   h1{
     display: flex;
     justify-content: center;
@@ -80,8 +83,18 @@ header {
   span {
     font: bold 16px Georgia, serif;
   }
-  .Early_Life{
-    padding: 0 35px 10px 0;
+  .Topics{
+    padding: 0 0 10px 80px;
+    display: flex;
+    align-self: flex-start;
+  }
+  .R_Text{
+    justify-content: flex-end;
+    padding-bottom: 0px;
+  }
+  .extendText_RTL{
+    display: flex;
+    flex-direction: row;
   }
 
 
