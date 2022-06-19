@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+.upperSection{
+    display: inline-block;
+    padding-bottom: 5px;
+    margin: 4px;
+    height: 50px;
+    border: 2px solid firebrick;
+}
+.centerSection{
+    border: 2px solid rgb(151, 158, 151);
+    width: auto;
+    height: 400px;
+}
+.centerBox{
+    border: 2px solid rgb(235, 48, 191);
+    width: 300px;
+    height: 300px;
+}
+p{
+    border: 2px solid rgb(137, 222, 39);
+    width: 150;
+    height: 50px;
+}
+.downSection {
+    border: 2px solid rebeccapurple;
+    width: auto;
+    height: 300px;
+}
+.info{
+    display: inline-block;
+    width: 60px;
+    height: 150px;
+    border: 2px solid red;
+}
