@@ -1,0 +1,63 @@
+body{
+    font-family: "roboto";
+    margin: 0;
+    padding:0;
+    background-image: url(../Pics/goku.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+nav {
+    display: inline-block;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    
+}
+nav > ul {
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    height: 100%; 
+    margin: 0; 
+    padding: 0;
+}
+#navbar li {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: bold;
+    position: relative;
+    color: rgb(207, 195, 175);
+    margin: 0 30px;
+    
+}
+.main{
+    position: relative;
+    top: -25px;
+    height: 712px;
+    color: rgb(207, 195, 175);
+}
+#text_allignment{
+    position: relative;
+    left: 25px;
+    top: 30%;
+    max-width: 300px;
+}
+
+footer>ul{
+
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    color: brown;
+    
+}
+a {
+    position: relative;
+    left: 1450px;
+    margin: 0 15px;
+    font-size: 25px;
+    color: rgb(199, 169, 117);
+    text-decoration: none;
+}
