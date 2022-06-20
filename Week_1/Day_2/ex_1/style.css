@@ -1,54 +1,40 @@
+
+
+
 <<<<<<< HEAD
-    *{
-        box-sizing: border-box;
-    }
-    a{
-        text-decoration: none;
-        color: black;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-    body{
-        margin: 0;
-        padding: 0;
-    }
-    nav {
-        position: relative;
-        height:70px ;
-        background-color: rgb(115, 169, 208);
-    }
-    li {
-        list-style: none;
-        display: inline-block;
-        position: absolute;
-        padding: 0 10px;
-    }
-    #icons {
-        position: absolute;
-        left: 150px;
-        top: 10px;
-        font-size: 40px;
-
-    }
-    #ourProduct {
-        position: absolute;
-        right: 110px;
-        top: 18px;
-        font-size: 25px;
-    }
-
-=======
-form {
-    background-color: grey;
-    height: 300px;
-    width: 300px;
+*{
+    box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+nav {
+    position: relative;
+    height:70px ;
+    background-color: rgb(115, 169, 208);
+}
+li {
+    list-style: none;
+    display: inline-block;
+    position: absolute;
+    padding: 0 10px;
+}
+#icons {
+    position: absolute;
+    left: 150px;
+    top: 10px;
+    font-size: 40px;
 
-.check input:checked{
-    font-size: 2em;
-    color: red;
 }
-input[type="checkbox"]:checked+label  {
-    border-color: red;
-  background-color:red;
+#ourProduct {
+    position: absolute;
+    right: 110px;
+    top: 18px;
+    font-size: 25px;
 }
->>>>>>> e3e0df06eda43a94a1728b91f6e25f95233b4343
