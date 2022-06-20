@@ -1,25 +1,24 @@
-
-
-
-<<<<<<< HEAD
 *{
     box-sizing: border-box;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: darkgray;
+}
+nav {
+    position: relative;
+    height:70px ;
+    background-color: rgb(56, 77, 92);
 }
 a{
     text-decoration: none;
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-body{
-    margin: 0;
-    padding: 0;
-}
-nav {
-    position: relative;
-    height:70px ;
-    background-color: rgb(115, 169, 208);
-}
-li {
+nav>li {
     list-style: none;
     display: inline-block;
     position: absolute;
@@ -37,4 +36,23 @@ li {
     right: 110px;
     top: 18px;
     font-size: 25px;
+}
+footer {
+    position: fixed;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(55, 34, 34);
+    text-align: center;
+}
+footer>li{
+    display: inline-block;
+    position: relative;
+    top: 15px;
+    margin: 0 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
