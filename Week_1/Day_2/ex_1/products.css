@@ -20,6 +20,15 @@ body {
     margin: 0 15px;
     height: 100%;
 }
+.pic {
+    position: relative;
+    top: 0;
+    height: 70%;
+    width: 100%;
+    background-image: url(../Pic/ShoppingProjectSetup_Week1Day2/image1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .description {
     position: absolute;
     text-align: center;

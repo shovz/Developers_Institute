@@ -18,25 +18,28 @@ a{
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-nav>li {
-    list-style: none;
-    display: inline-block;
-    position: absolute;
-    padding: 0 10px;
-}
+
 #icons {
+    list-style: none;
     position: absolute;
     left: 150px;
     top: 10px;
     font-size: 40px;
 
 }
-#ourProduct {
+#right_element {
     position: absolute;
-    right: 110px;
+    right: 90px;
     top: 18px;
     font-size: 25px;
 }
+#right_element>li  {
+    list-style: none;
+    display: inline-block;
+
+    padding: 0 10px;
+}
+
 footer {
     position: fixed;
     display: block;
