@@ -1,12 +1,12 @@
 body{
     font-family: "roboto";
+    box-sizing: border-box;
     margin: 0;
     padding:0;
     background-image: url(../Pics/goku.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-
 
 nav {
     display: inline-block;
@@ -46,7 +46,8 @@ nav > ul {
 }
 
 footer>ul{
-
+    position: relative;
+    right: 0%;
     margin: 0;
     padding: 0;
     height: 100px;
@@ -54,9 +55,10 @@ footer>ul{
     
 }
 a {
+    text-align: center;
     position: relative;
-    left: 1450px;
-    margin: 0 15px;
+    left: 72%;
+    margin: 0 20px;
     font-size: 25px;
     color: rgb(199, 169, 117);
     text-decoration: none;
