@@ -1,14 +1,14 @@
-form {
-    background-color: grey;
-    height: 300px;
-    width: 300px;
+body{
+    margin: 0;
+    padding: 0;
 }
-
-.check input:checked{
-    font-size: 2em;
-    color: red;
+ul{
+    margin: 0;
+    padding: 0;
 }
-input[type="checkbox"]:checked+label  {
-    border-color: red;
-  background-color:red;
+nav{
+    display: inline-block;
+ width: 100vw;  
+ height: 60px;
+ background-color: rgb(222, 172, 172); 
 }
