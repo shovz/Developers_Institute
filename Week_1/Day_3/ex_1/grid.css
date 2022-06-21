@@ -2,7 +2,16 @@
     box-sizing: border-box;
 }
 h1,h2{
-    margin: 5px 0;
+    margin: 10px 0;
+}
+
+.break_line::after{
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    margin-top: 10px;
+    background: rgba(68, 63, 63, 0.7);
 }
 body {
     margin: 0;
@@ -17,7 +26,7 @@ body {
     width: 65vw;
     height: 100%;
     margin: auto;
-    background-color: rgb(93, 93, 146);
+    background-color: rgba(142, 207, 209, 0.7);
     border-radius: 12px;
 }
 .sidebar{
@@ -25,56 +34,95 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: bisque;
+    background-color: rgba(245, 169, 223, 0.7);
     width: 30%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 3px 5px 0px #888888;
     
 }
 img{
-    margin-top: 50px;
+    margin: 80px 0 35px 0;
     height: 150px;
     width: 150px;
+    border: 2px solid black;
     border-radius: 50%;
 }
 .name_profession{
     position: relative;
     padding: 0 5px;
+    height: 170px;
 }
 
-.break_line::after{
-    display: block;
-    position: absolute;
-    content: "";
+.info{
+    height: 150px;
     width: 100%;
-    height: 2px;
-    background: rgb(255, 0, 0);
-    left: 0;
-    bottom: 5px;
-
+    /* font-size: 1.1rem; */
+    font-family: "Calibri", sans-serif;
 }
+.fa {
+    padding: 20px;
+    width: 50px;
+    margin: 5px 2px;
+    border-radius: 25px;
+  }
+  .fa-github {
+    background: #f6f6f6ea;
+    color: rgb(0, 0, 0);
+    font-size:24px;
+  }
+  .fa-instagram {
+    background: #b56782;
+    color: white;
+  }
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+.socials{
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    margin-top: 10px;
+}
+
 .main{
     width: 70%;
-    padding: 10px;
+    padding: 10px 20px;
+}
+.h1_font{
+    color: rgb(0, 0, 0); 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 28px; 
+    font-weight: bold; 
+}
+.profile {
+    height: 100px;
+
 }
 
-.profile {
-    position: relative;
-    height: 150px;
-}
 .education {
-    position: relative;
-    height: 150px;
+    height: 200px;
+    margin-top: 30px;
 }
+ 
+
 .skills {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-row: 2fr 1fr;
-    position: relative;
-    height: 150px;
+    height: 100px;
+    padding-bottom: 10px;
+    margin-top: 30px;
 }
 .skills>h1 {
     grid-column: 1/span 2;
 }
+.degree{
+    margin: auto;
+    padding-left: 30px;
+}
 .XP {
-    position: relative;
-    height: 150px;
+    height: 350px;
+    margin-top: 30px;
 }
