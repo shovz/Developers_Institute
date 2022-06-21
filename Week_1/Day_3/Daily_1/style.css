@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+ 
+} 
+body{
+    margin: 0;
+    padding: 30px;
+    background-color: rgb(112, 110, 110);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 800px;
+    width: 1200px;
+    background-color: rgb(133, 141, 141);
+    margin: auto;
+}
+#litleboxes{
+    border: 3px solid black;
+    height: 80px;
+    width: 80px;
+}
+.left, .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 600px;
+    width: 80px;
+}
+.mid{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 600px;
+}
+.left_color{
+    background-color: red;
+}
+.mid_color{
+    background-color: rebeccapurple;
+}
+.right_color{
+    background-color: hotpink;
+ }
