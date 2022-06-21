@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     margin: 0;
     padding: 0;
@@ -11,4 +12,66 @@ nav{
  width: 100vw;  
  height: 60px;
  background-color: rgb(222, 172, 172); 
+=======
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: darkgray;
+}
+nav {
+    position: relative;
+    height:70px ;
+    background-color: rgb(56, 77, 92);
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#icons {
+    list-style: none;
+    position: absolute;
+    left: 150px;
+    top: 10px;
+    font-size: 40px;
+
+}
+#right_element {
+    position: absolute;
+    right: 90px;
+    top: 18px;
+    font-size: 25px;
+}
+#right_element>li  {
+    list-style: none;
+    display: inline-block;
+
+    padding: 0 10px;
+}
+
+footer {
+    position: fixed;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(55, 34, 34);
+    text-align: center;
+}
+footer>li{
+    display: inline-block;
+    position: relative;
+    top: 15px;
+    margin: 0 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+>>>>>>> 0b65443da2d931c6c56ad3b11a4b1206689e9a45
 }
