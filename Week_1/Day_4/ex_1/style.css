@@ -1,0 +1,13 @@
+.navPadding{
+    padding: 10px 8rem;
+    background-color: darkslategrey;
+
+}
+.buttonW{
+    width: 150px;
+    /* background-color: rgba(144, 238, 144, 0.631); */
+}
+.main {
+    padding: 15px 50px;
+    margin-top: 60px;
+}
