@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" 
-    integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
-
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap"">
     <link rel="stylesheet" href="Portfolio.css">
@@ -23,8 +23,8 @@
         <button class="nav-toggle" aria-label="toggle navigation">
             <span class="hamburger"></span>
         </button>
-        <nav class="">
-            <ul class="nav_list">
+        <nav>
+            <ul class="nav__list">
                 <li class="nav__item Home"><a href="#home" class="nav__link">Home</a></li>
                 <li class="nav__item Home"><a href="#services" class="nav__link">Services</a></li>
                 <li class="nav__item Home"><a href="#about" class="nav__link">About Me</a></li>
@@ -39,7 +39,7 @@
              Hi, I am <strong>Shoval Zvulun</strong>
         </h1>
         <p class="section__subtitle section__subtitle--intro">front end dev</p>
-        <img src="../Pics/background.jpg" alt="shoval pic" class="intro__img">
+        <img src="../Pics/shoval_5.png" alt="shoval pic" class="intro__img">
     </section>
 
     <!-- My services -->
@@ -78,49 +78,50 @@
     <section class="about-me" id="about">
         <h2 class="section__title section__title--about">Who am I</h2>
         <p class="section__subtitle section__subtitle--about">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Nostrum perferendis quaerat at iure praesentium? Laboriosam
-            provident unde ullam nam inventore corrupti doloremque vitae
-            optio, alias autem facilis reiciendis quibusdam consequuntur?
+            Lorem ipsum dolor sit asdasdas adipisicing.
         </p>
         <div class="about-me__body">
-            <p></p>
-            <p></p>
+            <p> Nostrum perferendis quaerat at iure praesentium? Laboriosam
+                provident unde ullam nam inventore corrupti doloremque vitae
+                optio, alias autem facilis reiciendis quibusdam consequuntur?</p>
+            <p> Nostrum perferendis quaerat at iure praesentium? Laboriosam
+                provident unde ullam nam inventore corrupti doloremque vitae
+                optio, alias autem facilis reiciendis quibusdam consequuntur?</p>
         </div>
-        <img src="../Pics/shoval_2.jpg" alt="shoval pic 2">
+        <img src="../Pics/shoval_2.jpg" class="about-me__img"alt="shoval pic 2">
     </section>
 
     <!-- My Work -->
     <section class="my-work" id="work">
-        <h2 class="section__title">My Work</h2>
-        <p class="section__subtitle"></p>
+        <h2 class="section__title section__title--work">My Work</h2>
+        <p class="section__subtitle section__subtitle--work"> sadasd sad </p>
 
 
         <div class="portfolio">
 
             <!-- portfolio item 01 -->
             <a href="#" class="portfolio__item">
-                <img src="../Pics/portfolio_1.jpg" alt="portfolio img">
+                <img src="../Pics/portfolio_1.jpg"  class="portfolio__img" alt="portfolio img">
             </a>
             
             <!-- portfolio item 02 -->
             <a href="#" class="portfolio__item">
-                <img src="../Pics/portfolio_1.jpg" alt="portfolio img">
+                <img src="../Pics/portfolio_1.jpg" class="portfolio__img" alt="portfolio img">
             </a>
             
             <!-- portfolio item 03 -->
             <a href="#" class="portfolio__item">
-                <img src="../Pics/portfolio_1.jpg" alt="portfolio img">
+                <img src="../Pics/portfolio_1.jpg" class="portfolio__img" alt="portfolio img">
             </a>
             
             <!-- portfolio item 04 -->
             <a href="#" class="portfolio__item">
-                <img src="../Pics/portfolio_1.jpg" alt="portfolio img">
+                <img src="../Pics/portfolio_1.jpg" class="portfolio__img" alt="portfolio img">
             </a>
             
             <!-- portfolio item 05 -->
             <a href="#" class="portfolio__item">
-                <img src="../Pics/portfolio_1.jpg" alt="portfolio img">
+                <img src="../Pics/portfolio_1.jpg" class="portfolio__img" alt="portfolio img">
             </a>
             
         </div>
@@ -132,19 +133,27 @@
         <ul class="social-list">
 
             <li class="social-list__item">
-                <a class="social-list__link" href="https://www.youtube.com/">A</a>
+                <a class="social-list__link" href="https://www.youtube.com/">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
             </li>
 
             <li class="social-list__item">
-                <a class="social-list__link" href="https://github.com/">B</a>
+                <a class="social-list__link" href="https://github.com/">
+                    <i class="fa-brands fa-github"></i>
+                </a>
             </li>
 
             <li class="social-list__item">
-                <a class="social-list__link" href="https://www.linkedin.com/feed/">C</a>
+                <a class="social-list__link" href="https://www.linkedin.com/feed/">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
             </li>  
 
             <li class="social-list__item">
-                <a class="social-list__link" href="https://www.iheart.com/podcast/">D</a>
+                <a class="social-list__link" href="https://www.iheart.com/podcast/">
+                    <i class="fa-solid fa-podcast"></i>
+                </a>
             </li>
 
         </ul>
