@@ -1,0 +1,115 @@
+body{background-color: rgba(87, 86, 86, 0.531);}
+
+.container{
+    width: 1200px;
+    height: 800px;
+    display: grid;
+    grid-template-areas: 
+    "fadin colorchange"
+    "scaling rotate"
+    "shape shadowbox"
+    "swing borders";
+    background-color: rgb(66, 59, 59);
+    margin: auto;
+    grid-gap: 10px;
+}
+
+.boxes{
+    margin: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.fadin{
+    background-color: darkblue;
+}
+.fadin:hover{
+    background-color: darkblue;
+    opacity: 0.5;
+   
+}
+
+
+.colorchange{
+    background-color: darkmagenta;
+    
+}
+.colorchange:hover{
+    background-color: rgb(255, 108, 255);
+    
+}
+
+
+.scaling{
+    background-color: darkred;
+    
+}
+.scaling:hover{
+    
+    transform: scale(1.3);
+    
+}
+
+.rotate{
+    background-color: darkturquoise;
+    
+}
+.rotate:hover{
+    transform: rotate(30deg);
+    
+}
+
+.shape{
+    background-color: darkslateblue;
+    
+}
+.shape:hover{
+    border-radius: 100%;
+    
+}
+
+
+.shadowbox{
+    background-color: darkorange;
+    
+}
+.shadowbox:hover{
+   box-shadow: 2px 2px 90px rgba(255, 255, 255, 0.531);
+    
+}
+
+
+.swing{
+    background-color: darkorchid;
+
+}
+.swing:hover{
+    -webkit-animation: swing 1s ease;
+    
+}
+@-webkit-keyframes swing
+{
+    
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+
+.borders{
+    background-color: darkkhaki;
+    
+}
+.borders:hover{
+    box-shadow: inset  2px 5px 90px  rgba(63, 181, 16, 0.531);
+    
+}
+   
