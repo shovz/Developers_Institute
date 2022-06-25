@@ -11,6 +11,7 @@
     --fw-bold:900;
 
     --clr-light: #fff;
+    --clr-mid-light: rgb(199, 151, 151);
     --clr-drak: #303030;
     --clr-accent: #16e0bd;
 
@@ -37,7 +38,7 @@
 /* general styles */
     /* ------- */
 body{
-    background: var(--clr-light);
+    background: var(--clr-mid-light);
     color: var(--clr-drak);
     margin: 0;
     padding: 0;
@@ -71,12 +72,12 @@ strong{
 
 .btn {
     display: inline-block;
-    padding: 0.5em 1.5em;
+    padding: 0.75em 2.5em;
     background: var(--clr-accent);
     color: var(--clr-drak);
     text-decoration: none;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: var(--fw-bold);
@@ -144,8 +145,10 @@ header{
     padding: 1em;
 }
 
-.logo {
-    max-width: 100px;
+.logo img {
+    width: 110px;
+    height: 60px;
+    opacity: 1;
 }
 
 nav {
@@ -231,6 +234,7 @@ nav {
 }
 .intro__img {
     box-shadow: var(--boxs);
+    border-radius: 1em;
 }
 .section__subtitle--intro {
     display: inline-block;
@@ -251,7 +255,7 @@ nav {
     }
     .intro__img{
         grid-area: img;
-        min-width: 350px;
+        min-width: 400px;
         position: relative;
         z-index: 2;
     }
@@ -296,7 +300,9 @@ nav {
     /* opacity: 0.75; */
 }
 
-.services{ margin-bottom: 4em;}
+.services{ 
+    margin-bottom: 4em;
+}
 
 .service {
     max-width: 500px;
@@ -357,7 +363,7 @@ nav {
 }
 
      /* ---- */
-/* About Section */
+/* portfolio Section */
     /* ---- */
 
 .my-work{
