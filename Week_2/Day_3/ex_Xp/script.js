@@ -167,9 +167,10 @@ console.log(str);
 //ex 7 
 let names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
 let society= "";
-
+names.sort();
 for( let key in names)
 {
     society +=names[key][0] ;
 }
+
 console.log(society);
