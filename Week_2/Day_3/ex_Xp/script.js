@@ -1,64 +1,58 @@
-//  ex 1
+// ex 1
 
-let x = prompt("enter 1st number");
-let y = prompt("enter 2nd number");
+// part 1
+let people = ["Greg", "Mary", "Devon", "James"];
+let people2;
 
-if (x>y)
+people.shift();
+people.splice(2,1,"Jason");
+people.push("Shoval")
+console.log(people);
+console.log(people.indexOf("Mary"));
+people2 = people.slice(1,3);
+console.log(people2);
+people.indexOf("foo");
+// indexof("") returns -1 when the argument 
+// inside the brackets does not exists in the array
+
+let people3 = ["Greg", "James", "Mary", "Devon", ];
+let last = people3[people3.length-1];
+console.log(last);
+
+console.log("people.length",people3.length-1,
+"people.indexOf" ,people3.indexOf("James"));
+
+// part 2
+
+for (let person of people3)
 {
-    console.log(x, "is the biggest number");
+ console.log(person);
 }
-else if(x<y)
+
+
+let people4 = ["Greg", "James", "Mary", "Devon", ];
+let i =0;
+let j=0;
+while (people4[i]!=="James")
 {
-    console.log(y, "is the biggest number");
-}
-else {
-    console.log("the numbers are equal");
+    console.log(people4[i])
+    i++;
 }
 
-
-//  ex 2
-let newDog = prompt("enter a dog breed");
-console.log(`there are ${newDog.length} letters in Chihuahua`);
-console.log(newDog.toLocaleLowerCase());
-console.log(newDog.toLocaleUpperCase());
-
-if(newDog==="Chihuahua")
+while (j<people4.length)
 {
-    console.log('I love Chihuahuas, it`s my favorite dog breed');
-}
-else{
-    console.log(`I dont care, I prefer cats`);
-}
-
-//  ex 3
-
-let num = prompt("enter a number");
-
-if(num%2===0)
-{
-    console.log(num ,`is an even number`);
-}
-else {
-    console.log(num ,`is an odd number`);
-}
-
-//  ex 4
-
-let users = ["Lea123", "Princess45", "cat&doglovers", "helooo@000"];
-
-switch(users.length)
-{
-    case 0:
-        console.log(`no one is online`);
+    console.log(people4[j])
+    if(people4[j]==="James")
+    {
         break;
-    case 1:
-        console.log(users[0], `is online`);
-        break;
-    case 2:
-        console.log(`${users[0]} and ${users[1]} are online`);
-        break;    
-    default:
-        console.log(`${users[0]}, ${users[1]} and ${users.length-2} users are online`);
+    }
+    j++;
 }
-    
 
+//ex 2
+let colors =["red","blue","green","yellow","pink"];
+let suffixes =["st","nd","rd","th"]
+for(i=1;i<=colors.length;i++)
+{
+    console.log(`my ${i%10}${suffixes[i-1]} choice is ${colors[i-1]}`);
+}
