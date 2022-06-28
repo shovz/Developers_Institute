@@ -11,7 +11,7 @@
 true === false //false
 true != true //false
 
-//ex 2
+//ex 2 // ???????????
 let str = prompt("enter several numbers separated by ,")
 let str2 = split('')
 console.log(strArrr);
