@@ -120,10 +120,10 @@ const hotelCost =  (numOfNights) => {
 
 
 const planeRideCost =  (destination) => {
-    l
-    while (typeof(Number(destination)) !== "string" )
+
+    while (typeof (destination) !== "string")
     {
-        destination = prompt("plese enter a valid destination");
+        numOfNights = prompt("plese enter a valid destination");
     }
 
     switch (destination){
@@ -141,7 +141,7 @@ const planeRideCost =  (destination) => {
 const rentalCarCost =  (numOfDays) => {
     while (isNaN(numOfDays) || numOfDays<0)
     {
-        numOfDays = prompt("plese enter a valid number of days");
+        numOfDays = prompt("plese enter how many days you will rent the car");
     }
     if(numOfDays<=10)
     {
@@ -163,13 +163,6 @@ const totalVacationCost =  () => {
         travel = prompt("please enter your travel info in the format : days in the hotel," +
                         " travel destination, number of days you will rent a car ").split(/[, ]+/);
     }
-    // console.log(Number(travel[1]));
-    // let numOfDays = prompt("enter number of days you will rent the car");
-
-    // let destination = prompt("enter number of enter your destination").toLocaleLowerCase();
-
-    // let numOfNights = prompt("enter number of nights");
-
     sumOfTravel+= hotelCost(travel[0]) + planeRideCost(travel[1]) + rentalCarCost(travel[2]);
 
     console.log(sumOfTravel,hotelCost(travel[0]),planeRideCost(travel[1]),rentalCarCost(travel[2]));
