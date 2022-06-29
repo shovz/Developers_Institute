@@ -1,0 +1,51 @@
+
+
+div{
+    text-align: center;
+}
+
+
+.section{
+    display: grid;
+    margin: auto;
+    max-width: 500px;
+    grid-template-rows: repeat(8, 4fr);
+    grid-template-columns: 6fr;
+    grid-gap:10px;
+
+
+}
+.head{
+    background-color: green;
+    grid-column: 1/span 4;
+ 
+}
+.hero{
+    background-color: rebeccapurple;
+    grid-column: 1/span 2;
+    grid-row: 2/ span 3;
+}
+.side{
+    background-color: saddlebrown;
+    grid-column: 1/span 2;
+    grid-row: 3/ span 4;
+
+}
+.main{
+    background-color: blue;
+    /* grid-column: 3/span 6;
+    grid-row: 2/ span 4; */
+
+}
+.green{
+    background-color: khaki;
+}
+.extra{
+    background-color: gold;
+
+}
+.red{
+
+    background-color: red;
+
+}

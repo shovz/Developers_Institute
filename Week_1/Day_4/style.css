@@ -1,0 +1,17 @@
+.box {
+border: 2px solid rebeccapurple;
+}
+.rowbox{
+    /* background-color: black; */
+    /* border: 2px solid firebrick; */
+}
+.navbar{
+    /* border: 2px solid sienna; */
+        background-color: rgb(182, 180, 180);
+}
+.navbarleft{
+    border: 2px solid rebeccapurple;
+    list-style: none;
+    color: wheat;
+    margin: 0 15px;
+}
