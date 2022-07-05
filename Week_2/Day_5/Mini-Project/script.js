@@ -58,5 +58,3 @@ const compareNumbers = (userNumber,computerNumber) => {
 
      return alert("out of chances!!!!!");
 }
-
-playTheGame();

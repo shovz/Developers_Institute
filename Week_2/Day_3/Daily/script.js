@@ -55,10 +55,9 @@ const numbers2 = [5,0,9,1,7,4,2,6,3,8];
 let temp;
 for (let i=0;i<numbers2.length-1;i++)
 {
-    temp = numbers2[i];
     for(let j=i+1;j<numbers2.length;j++)
     {           
-        if (temp<numbers2[j])
+        if (numbers2[i]<numbers2[j])
         {
             temp=numbers2[j]; 
             numbers2[j]=numbers2[i];
@@ -68,3 +67,4 @@ for (let i=0;i<numbers2.length-1;i++)
     } 
 }
 console.log(numbers2);
+
