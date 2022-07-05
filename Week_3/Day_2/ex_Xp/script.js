@@ -166,29 +166,14 @@
 
 // ex 5
 
-let p2 = document.querySelector("p");
-// p2.style.color="red";
+// let p2 = document.querySelector("p");
 
-const changePosX = ()=>{
-  p2.style.backgroundColor="blue";
+// const changePosX = ()=>{p2.style.backgroundColor="blue";}
+// const changePosY = ()=>{p2.style.backgroundColor="green";}
+// const changeFont = ()=>{p2.style.fontSize="4rem";}
+// const changeColor = ()=>{p2.style.color="red";}
 
- 
-}
-const changePosY = ()=>{
-  p2.style.backgroundColor="green";
-
-}
-const changeFont = ()=>{
-  p2.style.fontSize="4rem";
-
-}
-const changeColor = ()=>{
-  p2.style.color="red";
-  console.log(p2.style.color);
-
-}
-
-p2.addEventListener("mouseout",changePosX);
-p2.addEventListener("mouseover",changePosY);
-p2.addEventListener("click",changeFont);
-p2.addEventListener("dblclick",changeColor);
+// p2.addEventListener("mouseout",changePosX);
+// p2.addEventListener("mouseover",changePosY);
+// p2.addEventListener("click",changeFont);
+// p2.addEventListener("dblclick",changeColor);
