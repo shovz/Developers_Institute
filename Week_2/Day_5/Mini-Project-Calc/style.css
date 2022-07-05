@@ -1,0 +1,58 @@
+*{
+    font-family: 'PT Sans', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: darkgray;
+}
+.container{
+    margin: 20px auto;
+    max-width: 500px;
+    display: grid;
+    justify-content: center;
+    grid-gap: 2px;
+    align-items: center;
+    grid-template-areas: 
+    "ans ans ans ans "
+    "row1 row1 row1 row1 "
+    "row2 row2 row2 row2 "
+    "row3 row3 row3 row3 "
+    "row4 row4 row4 row4 "
+    "row5 row5 row5 row5 ";
+}
+.ans{
+    grid-area: ans;
+    background-color: rgb(240, 227, 212);
+    border: 2px solid black;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2rem;
+    padding: 0.5em 0.5em;
+}
+.row1{
+    grid-area: row1;
+}
+.row2{
+    grid-area: row2;
+}
+.row3{
+    grid-area: row3;
+}
+.row4{
+    grid-area: row4;
+}
+.row5{
+    grid-area: row5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.bigButton{
+    width: 100%;
+}
+button{
+    border: 2px solid black;
+    outline: none;
+}
