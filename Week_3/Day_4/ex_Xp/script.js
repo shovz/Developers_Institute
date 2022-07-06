@@ -82,7 +82,7 @@ const clicked = ()=>
 //creating Canvas Layout
 const createCanvasDivs =()=>{
     let height= 42;
-	let width= 40;
+	let width= 48;
     for(let i=0;i< height*width;i++)
     {
         let canvasDiv = document.createElement("div");
@@ -96,6 +96,16 @@ const createCanvasDivs =()=>{
 }
 
 
+const clearAll = ()=>{
+    let numOfColorSaved =savedColorContainer.childNodes.length;
+    for (let i of canvasContainer.childNodes){
+        i.style.backgroundColor="white";
+    }
+    for (let i=0;i< numOfColorSaved;i++){
+        savedColorContainer.childNodes[0].remove();
+        console.log(i);
+    }
+}
 
 // RGB to hex calc section
 const cases=(exp)=>{
@@ -146,3 +156,4 @@ const ConvertRGBtoHex=(red, green, blue)=> {
 
 createCanvasDivs();
 colorPicker.addEventListener("change",colorPick);
+clearBtn.addEventListener("click",clearAll);
