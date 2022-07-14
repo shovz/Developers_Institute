@@ -1,0 +1,59 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+body{
+    padding:0;
+    margin: 0;
+    background-color: mediumslateblue;
+}
+
+.nav{
+    display:flex;
+    background-Color:lightgreen;
+    height:60px; 
+    padding:0.5em 1em;
+    justify-content: flex-start;
+    align-items: center;
+}
+.mainDiv{
+ 
+    display: grid;
+    grid-template-columns: repeat(3,300px);
+    grid-gap: 20px;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.search{
+    width:50%;
+    height: 100%;
+
+}
+.logo{
+    font-size: 2em;
+    text-align: center;
+    width:30%;
+    font-family: 'SEGA LOGO FONT', sans-serif;
+}
+
+.roboCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    max-width: 300px;
+    height: 400px;
+    border-radius: 15px;
+}
+
+.roboImg{
+    background-color: rgb(55, 55, 112);
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin: 20px 0;
+}
