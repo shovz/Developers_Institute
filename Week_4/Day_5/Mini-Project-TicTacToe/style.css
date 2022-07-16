@@ -1,0 +1,62 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+body{
+    padding:0;
+    margin: 0;
+    background-color: mediumslateblue;
+}
+
+#end{
+    display: none;
+    justify-content: center;
+    margin: auto;
+    width: 800px;
+}
+#reset{
+    font-size: 20px;
+}
+
+#players{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 800px;
+}
+#x,#o{
+    width: 100px;
+    height: 80px;
+    font-size: 20px;
+    margin: 10px;
+}
+.gameBox{
+    
+    width:300px;
+    margin: 5% auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    
+}
+.rows{
+    display: flex;
+    
+}
+.box{
+    height: 100px;
+    width:100px;
+    background-color: rgb(188, 188, 188);
+    margin: 1px;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.marked {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgba(139, 193, 126, 0.693);
+
+}
