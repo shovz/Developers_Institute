@@ -7,7 +7,7 @@ let search;
 form.addEventListener("submit",(event)=>{
 	event.preventDefault();
 	search= event.target.search.value;
-	giffy.open(`GET`,`https://api.giphy.com/v1/gifs/search?q=${search}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My&limit=1`);
+	giffy.open(`GET`,`https://api.giphy.com/v1/gifs/random?tag=${search}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My&limit=1`);
 	giffy.send();
 	form.elements.search.value="";
 })
@@ -18,7 +18,7 @@ giffy.onload = function() {
 	 	console.log(giffy)
 	} else {
 		let dataObj = JSON.parse(giffy.response);
-		console.log(dataObj)
+		console.log(dataObj.data);
 		displayGiffs(dataObj)
 	}
 };
@@ -39,13 +39,12 @@ const displayGiffs = (dataObj) => {
 	let deleteBtn = document.createElement("button");
 	let deleteBtn_text = document.createTextNode("delete!!!!!!!!");
 
-
-	img.src = `${dataObj.data[0].images.downsized_large.url}`;
+	img.src = `${dataObj.data.images.downsized_large.url}`;
 	deleteBtn.append(deleteBtn_text);
 	deleteBtn.setAttribute(`style`,`height:40px;width:150px`);
 	btndelete(deleteBtn);
 
-	div.setAttribute(`id`,`${dataObj.data[0].id}`);
+	div.setAttribute(`id`,`${dataObj.data.id}`);
 	div.append(img,deleteBtn);
 
 	document.body.append(div);
