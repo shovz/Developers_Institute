@@ -44,8 +44,10 @@ console.log(arr[1]);
 
     function x() {
     	a = 5;
+        console.log(a);
     }
     // no it will be undefind - no type of Variable
+    // *** it will be only in th function scope
 
 // #### Functions
 // 7. In JavaScript can we pass functions as arguments to other functions? What does this code return ?
@@ -68,7 +70,7 @@ console.log(arr[1]);
           return num1 + num2
       }
 
-      sum=(num1, num2)=>{
+     const sum=(num1, num2)=>{
         return num1 + num2
     }
       
@@ -145,6 +147,7 @@ const addP2 = ()=>{
         return m >= 50;
      });
      // passed = [67,60,89,90,67]
+    //  *** i forgot every returns false or ture... passed=false
 
 // 15. What does the following code log?
 
@@ -167,10 +170,7 @@ const addP2 = ()=>{
 // 16. Use 2 javascript array methods and chain them to return the sum of all the positives ones. 
 
      const secondInput = [ 1, -4, 12, 0, -3, 29, -150];
-     const total = (secondInput.filter(elem=>{
-        if(elem>=0){
-            return elem
-        }})) .reduce((acc,elem)=>{return acc+=elem; },0)
+     const total = (secondInput.filter(elem=>elem>=0 )).reduce((acc,elem)=>{return acc+=elem },0)
      console.log(total) //42
 
 
