@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://localhost:3000/formData" method="POST" target="_blank">
+        <input id="email" type="email" name="email" placeholder="enter email" required />
+        <br/>
+        <br/>
+        <input  type="text" name="message" placeholder="enter text" style="height: 100px; width:300px" />
+        <br/>
+        <input type="submit" value="Submit Now!">
+    </form>
+
+
+     <script>
+        let btn = document.getElementsByTagName('form')[0];
+        
+        const ValidateEmail=()=> {
+        let email = document.getElementById('email').value;
+        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (email.value.match(validRegex)) {
+            return email;
+        } else {
+            alert("Invalid email address!");
+            return false;
+        }}
+        btn.addEventListener("submit",ValidateEmail)
+     </script>
+</body>
+</html>
