@@ -17,6 +17,11 @@ app.get('/user/:id',(req,res)=>{
     res.json(id);
   })
 
+app.post('/formData',(req,res)=>{
+    console.log(req);
+  })
+
+
 app.listen(3000);
 
 

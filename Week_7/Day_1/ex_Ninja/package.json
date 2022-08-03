@@ -1,0 +1,19 @@
+{
+  "name": "ex_xp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "date.js",
+  "scripts": {
+    "start": "nodemon script.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.19",
+    "regex": "^0.1.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0"
+  }
+}
