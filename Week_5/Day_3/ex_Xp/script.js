@@ -42,4 +42,4 @@ let prom1 = Promise.resolve(3);
 prom1.then(val=>console.log(val),err=>console.log(err))
 let prom2 = Promise.reject("boo").catch(err=>console.log(err))
 
-console.log(prom2);
+console.log(prom1,prom2);

@@ -9,46 +9,24 @@ const shiftSpace=(str)=>{
     return temp;
 
 }
-const createNewArry=(str)=>{
-    let newstr=[];
-    for (let i =0;i<str.length;i++)
-    {   
-        if(!newstr.includes(temp[i])){
-            newstr.push(temp[i]);
-        }
-    }
-    return newstr;
-
-}
-const count=(newstr,str)=>{
-    let counter=[];
-    for (let i =0;i<newstr.length;i++)
-    {   
-        counter[i]=0;
-        for (let j =0;j<str.length;j++)
-        {   
-            if(newstr[i]===str[j]){
-                counter[i]++;
-            }
-        }
-    }
-    return counter;
-}
 
 const anagram=(str1,str2)=>{
-    console.log(str1,str2);
     str1=shiftSpace(str1);
-    console.log(str1);
-
     str2=shiftSpace(str2);
-    console.log(str2);
-    let newstr1= createNewArry(str1);
-    let newstr2= createNewArry(str2);
-    let counter1= count(newstr1,str1);
-    let counter2= count(newstr2,str2);
+    
+    if(str1.length!=str2.length){
+        console.log("not anagram"); 
+    }
+    else{
+        for (let i =0;i<str1.length;i++)
+        {   
+            if(str1[i]!=str2[i]){
+                return console.log("not anagram"); 
+            }
+        }
+        console.log("anagram"); 
+    }
 
-    console.log(counter1);
-    console.log(counter2);
 }
 
-anagram("Astronomer","Moon starer");
+anagram("The Morse Code","Here come dots");

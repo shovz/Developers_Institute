@@ -1,6 +1,7 @@
 let btn =document.getElementById("send");
 let input1 =document.getElementById("fname");
 let input2 =document.getElementById("lname");
+let textarea =document.getElementById("textarea");
 let fname;
 let lname;
 
@@ -10,8 +11,8 @@ btn.addEventListener("click",(event)=>{
         "fname": fname,
         "lname": lname
     }
-    test=JSON.stringify(test,null,2);
-    console.log(test);
+    console.log(document.write(JSON.stringify(test,null,2)));
+
 })
 
 input1.addEventListener("input",(event)=>{

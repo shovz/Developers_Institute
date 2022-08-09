@@ -6,9 +6,14 @@ let inventory = [
   { id: 5, car_make: "Honda", car_model: "Accord", car_year: 1995 },
 ];
 
-inventory.filter
 const getCarHonda=(carInventory)=>{
-    let model  = carInventory.filter(elem=>{ inventory.find(elm=>{ elm['car_make']==='honda'})})
-    return model;
+    let model  = carInventory.find(elm=>elm['car_make']==='Honda');
+    return `This is a ${model.car_make} ${model.car_model} from ${model.car_year}`
 }
 getCarHonda(inventory);
+
+const sortCarInventoryByYear=(carInventory)=>{
+  let sorting  = carInventory.sort((x,y)=> x.car_year- y.car_year)
+  console.log(sorting);
+}
+sortCarInventoryByYear(inventory);
