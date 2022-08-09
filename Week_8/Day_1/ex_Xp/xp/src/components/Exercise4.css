@@ -1,0 +1,19 @@
+.h1{
+    color: red;
+    background-color: lightblue;
+}
+
+.para {
+    background-color: #282c34;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+  }
+
+  .main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
