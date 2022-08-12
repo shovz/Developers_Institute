@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(76, 117, 179);
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 100px auto;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(76, 117, 179);
+    border-radius: 10px;
+}
+.qoute{
+    font-size: 2em;
+    height: 30%;
+    padding: 10px;
+
+}
+.author{
+    align-self: flex-end;
+    height: 30%;
+    font-size: 1.2em;
+    padding: 0 15px;
+}
+.main>button{
+    width: 150px;
+    align-self: flex-end;
+    margin: 0 15px;
+    padding: 10px;
+    background-color: rgb(76, 117, 179);
+    border: none;
+    color: white;
+    height: 50px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.style1{
+    background-color: rgb(105, 184, 41);
+    color: rgb(167, 49, 49);
+}
+.style2{
+    background-color: rgb(168, 122, 21);
+    color: rgb(192, 31, 171);
+}
+.style3{
+    background-color: rgb(132, 59, 150);
+    color: darkorange;
+}
