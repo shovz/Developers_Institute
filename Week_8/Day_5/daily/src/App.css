@@ -1,0 +1,55 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+header{
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  border-bottom: 5px solid grey;
+  margin-bottom: 10px;
+}
+header>h1{
+  margin: 0;
+  padding:0 10px;
+
+}
+.scores{
+  display: flex;
+  align-self: flex-end;
+
+}
+.scores>h2{
+  margin: 15px;
+}
+.superheros_grid{
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: 1fr 1fr;
+  margin: auto;
+  width: 1600px;
+ 
+}
+.superhero_card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 0 0 2px 0.1px black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.superhero_card:hover{
+  box-shadow: 0 5px 15px 0 black;
+
+}
+img{
+  width: 200px;
+  height: 250px;
+}
