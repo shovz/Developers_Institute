@@ -1,0 +1,30 @@
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5%;
+}
+.App>input{
+  margin-bottom: 20px;
+}
+
+.navItem{
+  margin: 10px;
+  
+  text-decoration: none;
+  padding: 5px;
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+  
+}
+
+.photos_grid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 15px;
+  
+}
