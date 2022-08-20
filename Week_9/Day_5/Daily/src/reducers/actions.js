@@ -3,6 +3,7 @@ const FETCH_MOVIES = 'FETCH_MOVIES';
 const FETCH_MOVIE = 'FETCH_MOVIE';
 // const LOADING = 'LOADING';
 
+
 export const  searchMovie = (value)=>(dispatch)=>{
     dispatch({type:SEARCH_MOVIE,payload:value})
 }
