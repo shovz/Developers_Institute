@@ -12,7 +12,7 @@ class Beaches extends Component{
           {
             this.props.photos.map((photo,index)=>{
               return (
-                  <img  alt='Birds'
+                  <img alt='Beaches' 
                   key={index} 
                   style={{height:'150px',width:'150px'}} 
                   src={photo.src.original}/>

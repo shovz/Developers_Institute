@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import '../App.css';
 
-class Beaches extends Component{
+class Mountain extends Component{
 
   render(){
     return (
       <div>
-        <h1>Beaches</h1>
+        <h1>Mountain</h1>
         <div className='photos_grid'>
           {
             this.props.photos.map((photo,index)=>{
               return (
-                  <img  alt='Birds'
+                  <img  alt='Mountain' 
                   key={index} 
                   style={{height:'150px',width:'150px'}} 
                   src={photo.src.original}/>
@@ -31,5 +31,5 @@ const mapStateToProps=(state)=>{
   }
 }
 
-export default  connect(mapStateToProps)(Beaches);
+export default  connect(mapStateToProps)(Mountain);
 

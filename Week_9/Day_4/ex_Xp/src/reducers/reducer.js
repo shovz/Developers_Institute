@@ -1,6 +1,8 @@
 const initState = {
-    photos:[],
-    search: ""
+        text: '',
+    movies: [],
+    loading: false,
+    movie: []
 
 }
 
@@ -10,9 +12,13 @@ const initState = {
 
 export const reducer = ((state=initState,action={})=>{
     switch (action.type) {
-        case 'SEARCH_INPUT':
+        case 'SEARCH_MOVIE':
             return {...state ,search:action.payload}
-        case 'GET_PHOTOS':
+        case 'FETCH_MOVIES':
+            return {...state ,photos:action.payload}
+        case 'FETCH_MOVIE':
+            return {...state ,search:action.payload}
+        case 'LOADING':
             return {...state ,photos:action.payload}
         default:
             return {...state}
