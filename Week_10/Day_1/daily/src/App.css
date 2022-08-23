@@ -1,0 +1,12 @@
+.game_box{
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+}
+.game_container{
+  display: grid;  
+  grid-template-columns: repeat(3,1fr);
+  width: fit-content;
+  margin: 15px auto;
+}
+
