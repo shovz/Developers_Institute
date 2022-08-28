@@ -17,7 +17,7 @@ class Favorites extends Component {
                         console.log(city)
                         return (
                             <div key={i}>
-                                <h1>city</h1>
+                                <h1>{city}</h1>
                             </div>
                         )
                     })

@@ -4,13 +4,16 @@ import {Container,Box,Typography} from '@mui/material';
 
 function mapStateToProps(state) {
     return {
-        current_condition:state.current_condition,
+        forcast:state.forcast,
         city_key: state.city_key,
     };
 }
 
 class Forcast extends Component {
+    
     render() {
+        const forcast = this.props.forcast.DailyForecasts
+        console.log(forcast);
         return (
             <Container>
                 <Box>
@@ -18,23 +21,37 @@ class Forcast extends Component {
                     5 Days Forcast :
                     </Typography>
                 </Box>
-                <Box>
-                <Typography  variant="h5"> 
-                Time :
-                    {this.props.current_condition[0].LocalObservationDateTime}
-
-                </Typography>
-                <Typography  variant="h5"> 
-                Current Temperature :
-                    {this.props.current_condition[0].Temperature.Metric.Value}
-                    {this.props.current_condition[0].Temperature.Metric.Unit}
-                </Typography>
-                <Typography  variant="h5"> 
-                Weather :
-                    {this.props.current_condition[0].WeatherText}
-
-                </Typography>
-                </Box>
+                {
+                    forcast.map((day,i)=>{
+                        return(
+                            <Box  sx={{ bgcolor: 'primary.main' ,margin:'30px 0',padding:'15px'}}  key={i}>
+                            <Typography  variant="h5"> 
+                            Time :
+                                { day.Date  }
+                               
+                            </Typography>
+                            <Typography  variant="h5"> 
+                            Min Temperature :
+                                {day.Temperature.Minimum.Value}
+                                {day.Temperature.Minimum.Unit}
+                            </Typography>
+                            <Typography  variant="h5"> 
+                            Max Temperature :
+                                {day.Temperature.Minimum.Value}
+                                {day.Temperature.Minimum.Unit}
+                            </Typography>
+                            <Typography  variant="h5"> 
+                           day forcast :
+                                {day.Day.IconPhrase}
+                            </Typography>
+                            <Typography  variant="h5"> 
+                            night forcast :
+                                {day.Night.IconPhrase}
+                            </Typography>
+                            </Box>
+                        )
+                    })
+                }
             </Container>
         );
     }

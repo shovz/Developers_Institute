@@ -20,7 +20,7 @@ class Search extends Component {
                     id="standard-basic" 
                     label="Search City Weather" 
                     variant="standard" />
-                    <Button href='/' onClick={()=> this.props.dispatch(getLocationKey(this.props.city))}>
+                    <Button  onClick={()=> this.props.dispatch(getLocationKey(this.props.city))}>
                         Get City Weather
                     </Button>
                 </Box>

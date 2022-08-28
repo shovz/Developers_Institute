@@ -3,7 +3,7 @@ const GET_LOC_KEY = 'GET_LOC_KEY';
 const CURRENT_CONDITION= 'CURRENT_CONDITION';
 const FORCAST = 'FORCAST';
 const ADD_TO_FAV = 'ADD_TO_FAV';
-const API_KEY = 'YJO3YlsMOfLA3SzDvnqEMkhJ8iacciGR'
+const API_KEY = 'pLAuVGTkUyGdHPw18BJZZkgLj6FCbiCU'
 let locations_searched = JSON.parse(localStorage.getItem("locations_searched"))|| []
 let forcast =JSON.parse(localStorage.getItem("searched_forcast"))|| []
 let current_conditions =JSON.parse(localStorage.getItem("current_conditions"))|| []
@@ -14,6 +14,7 @@ export const  changeInput = (city)=>(dispatch)=>{
 }
 
 export const  getLocationKey = (city)=>(dispatch)=>{
+    console.log(city,API_KEY);
     fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${city}`)
     .then(res=>res.json())
     .then(location=>{
@@ -50,9 +51,9 @@ export const  getForcast= (city_key)=>(dispatch)=>{
     .catch(err=>console.log(err))
 }
 
-export const  addToFav = (city)=>(dispatch)=>{
-    console.log(city);
-    dispatch({type:ADD_TO_FAV, payload:city})
+export const  addToFav = (city,fav_icon)=>(dispatch)=>{
+
+    dispatch({type:ADD_TO_FAV, payload:{city,fav_icon}})
 }
 
 
