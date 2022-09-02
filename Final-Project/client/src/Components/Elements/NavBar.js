@@ -1,31 +1,33 @@
-import {useState} from 'react';
-import {AppBar,Box,Toolbar,IconButton,Typography,Menu,Container,Avatar,Button,Stack} from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import {useEffect,useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import {AppBar,Box,Toolbar,Typography,Container,Button,Stack} from '@mui/material';
+import AdbIcon from '@mui/icons-material/Adb';
+import UserSettings from './UserSettings'
+import {setAccessToken, isSignedIn } from '../../Redux/Actions/LoginRegisterAction';
 
-const pages = ['Home'];
-const settings = ['Profile', 'Analytics', 'Logout'];
 
-const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+const NavBar = (props) => {
+  let navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  useEffect (()=>{
+      try {
+          if(props.accessToken){
+            const decode = jwt_decode(props.accessToken)
+            const timeout = decode.exp*1000 - new Date().getTime();
+            setTimeout(() => {
+              props.dispatch(isSignedIn(false));
+              props.dispatch(setAccessToken('')); 
+              alert('session expired');
+              navigate('/')
+            }, timeout);
+          }
+    } catch (e) {
+      console.log(e);
+    }
+  })
 
   return (
     <AppBar position="static">
@@ -51,43 +53,40 @@ const NavBar = () => {
           </Typography>
 
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Stack direction="row"  spacing={2} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button color="secondary" variant="contained"  component={Link} to={'/'}>Home</Button>
-          </Box>
-          <Stack direction="row"  spacing={2} >
-            <Button color="secondary"  variant="contained" component={Link} to={'/register'}>Register</Button>
-            <Button color="secondary" variant="contained"  component={Link} to={'/SignIn'}>SignIn</Button>
+         {
+          props.isSignedIn===true? (
+            <>
+            <Button color="secondary" variant="contained"  component={Link} to={'/DashBoard'}>DashBoard</Button>
+            <Button color="secondary" variant="contained"  component={Link} to={'/analytics'}>Analytics</Button>
+            </>
+          ): null
+          }
+
           </Stack>
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar/>
-            </IconButton>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
+
+          {
+            props.isSignedIn===false? (
+              <Stack direction="row"  spacing={2} >
+              <Button color="secondary"  variant="contained" component={Link} to={'/register'}>Register</Button>
+              <Button color="secondary" variant="contained"  component={Link} to={'/signIn'}>SignIn</Button>
+            </Stack>
+            ): <UserSettings/>
+          }
+
+
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default NavBar;
+
+const mapStateToProps=(state)=>{
+  return {
+    accessToken  : state.accessToken,
+    isSignedIn : state.isSignedIn
+  }
+}
+
+export default  connect(mapStateToProps)(NavBar);

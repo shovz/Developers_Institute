@@ -3,8 +3,14 @@ import {Typography,Card,CardHeader,CardActions,CardContent,IconButton,
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {setJobTitle} from '../../Redux/Actions/DashboardAction'
+import {connect} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
-function JobApplication({title,date}) {
+function JobApplicationCard(props) {
+  const {title,date} = props;
+  let navigate = useNavigate();
+
   return (
 
         <Card sx={{ maxWidth: 345 }}>
@@ -19,15 +25,14 @@ function JobApplication({title,date}) {
                     <MoreVertIcon />
                   </IconButton>
                 }
+                sx={{cursor:'pointer'}}
                 title={title}
                 subheader={date}
+                onClick={()=>{
+                  props.dispatch(setJobTitle(title));
+                  navigate(`/jobInfo/${title}`)
+                }}
               />
-              {/* <CardMedia
-                // component="img"
-                // height="194"
-                // image="/static/images/cards/paella.jpg"
-                // alt="Paella dish"
-              /> */}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   This impressive paella is a perfect party dish and a fun meal to cook
@@ -76,4 +81,5 @@ function JobApplication({title,date}) {
   );
 }
 
-export default JobApplication;
+
+export default  connect()(JobApplicationCard);

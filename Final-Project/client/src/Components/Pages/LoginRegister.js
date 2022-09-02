@@ -1,20 +1,61 @@
-import {useState,useEffect} from 'react'
-import {Navigate,Link, useNavigate} from 'react-router-dom';
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Box,TextField,Button,Radio,RadioGroup,Select,MenuItem 
-  ,FormControlLabel,FormControl,FormLabel} from '@mui/material';
+import {Box,TextField,Button,Radio,RadioGroup,Select,MenuItem, 
+        FormControlLabel,FormLabel, Typography} from '@mui/material';
 import FormContainer from '../Elements/FormContainer';
+import {connect} from 'react-redux';
+import { setAccessToken,isSignedIn } from '../../Redux/Actions/LoginRegisterAction';
 
 
-const LoginRegister = ({title}) => {
+const LoginRegister = (props) => {
+  let navigate = useNavigate();
+  const {title,accessToken} = props;
   const [fname,setFname] = useState('');
   const [lname,setLname] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-  // const [position,setPostion] = useState('');
+  const [gender,setGender] = useState('male');
+  const [msg,setMsg]=useState('');
   const [xp_years,setXp_years] = useState('0-2');
 
-  let navigate = useNavigate();
+  const handleForm = async () => {
+    if(title==='Register'){
+        try {
+          const response = await axios.post(`/register`,{
+            fname,lname,email,password,xp_years,gender
+          },{
+            withCredentials:true,
+            headers:{
+              'Content-Type':'application/json'
+            },
+          });
+          console.log('register=>', response);
+          setMsg(" ");
+          navigate('/signIn')
+        } catch (e) {
+          setMsg(e.response.data.msg);
+        }
+    }
+    else{
+      try {
+        const token = await axios.post('/signIn',{
+          email,password
+        },{
+          withCredentials:true,
+          headers:{
+            'Content-Type':'application/json'
+          }
+        });
+        console.log('signed in token =>',token.data);
+        props.dispatch(setAccessToken(token.data));
+        props.dispatch(isSignedIn(true));
+        navigate('/')
+      } catch (e) {
+        setMsg(e.response.data.msg);
+      }
+    }
+  }
 
   return (
     <FormContainer>
@@ -29,11 +70,13 @@ const LoginRegister = ({title}) => {
                   id='fname'
                   label='Enter First Name'
                   variant='outlined'
+                  required
                   onChange={(e)=> setFname(e.target.value)}
                   />
                   <TextField 
                   sx={{m:1}}
                   id='lname'
+                  required
                   label='Enter Last Name'
                   variant='outlined'
                   onChange={(e)=> setLname(e.target.value)}
@@ -45,6 +88,7 @@ const LoginRegister = ({title}) => {
                 sx={{m:1,width:'300px'}}
                 id='email'
                 type='email'
+                required
                 label='Enter Email'
                 variant='outlined'
                 onChange={(e)=> setEmail(e.target.value)}
@@ -55,20 +99,22 @@ const LoginRegister = ({title}) => {
                 sx={{m:1,width:'300px'}}
                 id='password'
                 type='password'
+                required
                 label='Enter Pasword'
                 variant='outlined'
                 onChange={(e)=> setPassword(e.target.value)}
                 />
               </Box>
-              {title=='Register'? ( 
+              {title==='Register'? ( 
                 <>
                   <Box sx={{display:'flex', alignItems:'center',m:2}} >
                     <FormLabel sx={{mr:1}}  id="gender">Gender :</FormLabel>
                     <RadioGroup 
                       row
-                      aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue="female"
-                      name="radio-buttons-group"
+                      aria-labelledby="gender"
+                      defaultValue="male"
+                      name="gender"
+                      onClick={(e)=>setGender(e.target.value)}
                     >
                       <FormControlLabel value="female" control={<Radio />} label="Female" />
                       <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -92,12 +138,21 @@ const LoginRegister = ({title}) => {
                 </>
                 ):null}
             </Box>
-            <Button variant='contained'>{title}</Button>
+            <Button variant='contained'
+              onClick={handleForm}>
+              {title}
+            </Button>
+            <Typography sx={{m:2}}>{msg}</Typography>
     </FormContainer>
   )
 }
 
-export default LoginRegister;
+const mapStateToProps=(state)=>{
+  return {
+    accessToken  : state.accessToken 
+  }
+}
 
 
+export default  connect(mapStateToProps)(LoginRegister);
 

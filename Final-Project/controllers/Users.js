@@ -13,8 +13,8 @@ export const getUsers= async (req,res)=>{
     }
 };
 
-export const register = async (req,res)=>{
-    const {fname,lname,email,password,position,xp_years} = req.body;
+export const register = async (req,res)=>{  
+    const {fname,lname,email,password,xp_years,gender} = req.body;
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password,salt);
     try{
@@ -26,15 +26,18 @@ export const register = async (req,res)=>{
                     lname,
                     email,
                     password:hashPassword,
-                    position,
                     xp_years,
+                    gender
               })
               .returning ('*')
               .then (db_user=>{
                 console.log(db_user);
                 res.json(db_user[0]);
               })
-            }     
+            } 
+            else {
+                res.status(400).json({msg: 'User already exists'})
+            }
         });
     } catch(e){
         res.status(404).json({msg: 'Email already exists'})
@@ -52,12 +55,12 @@ export const signIn = (req,res)=>{
             if(!match) return res.status(404).json({msg: 'Email or Password is incorect'});
             const {fname,lname} = db_users[0];
             const accessToken =
-            jwt.sign({fname,lname},process.env.ACCESS_TOKEN_SECRET,{
-                expiresIn:'30s'
+            jwt.sign({fname,lname,email},process.env.ACCESS_TOKEN_SECRET,{
+                expiresIn:'1h'
             })
             res.cookie('accessToken',accessToken,{
                 httpOnly:true,
-                maxAge: 30*1000
+                maxAge: 3600*1000
             });
             res.json(accessToken);
            
@@ -70,7 +73,7 @@ export const signIn = (req,res)=>{
 }
 
 export const signOut = async (req,res)=>{
-    const accessToken = req.cookie.accessToken;
+    const accessToken = req.cookies.accessToken;
     if(!accessToken) return res.sendStatus(204);
     res.clearCookie('accessToken');
     return res.sendStatus(200);
@@ -81,14 +84,12 @@ export const signOut = async (req,res)=>{
 
 //checking if user exist
 function checkIfExists(email){
-     // const salt = await bcrypt.genSalt();
-    // const hashPassword = await bcrypt.hash(password,salt);
     return db.select('email').from ('users')
     .where({email});
 }
 
 //checking if user exist
-function isSignedIn(email){
+ function isSignedIn(email){
   return db.select('fname','lname','password').from ('users')
   .where({email});
 }
