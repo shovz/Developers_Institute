@@ -16,7 +16,7 @@ export const Auth = (props) =>{
               'Content-Type':'application/json'
             }
           });
-          console.log(response);
+          // console.log(response);
           if(response.status === 200){
             setRedirect(true)
           }
@@ -29,7 +29,7 @@ export const Auth = (props) =>{
     },[])
 
     return (
-      redirect ? props.children : <h1>Session Expired</h1>
+      redirect ? props.children : null
     )
 }
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {Container,Typography,Card,Grid ,CardMedia,Button} from '@mui/material'
 import './landing.css'
-import {Link} from 'react-router-dom';
 export const Landing = (props) => {  
   return (
     <div>

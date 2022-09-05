@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import router from './routes/Users.js';
+import router from './routes/JobTracker.js';
 
 dotenv.config();
 const app = express();

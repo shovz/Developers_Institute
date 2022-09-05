@@ -11,7 +11,6 @@ import {Auth} from './Components/Authentication/Auth'
 
 
 function App(props) {
-  // console.log(props.jobTitle);
   return (
     <div >
       <NavBar/>

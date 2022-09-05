@@ -1,9 +1,9 @@
-import {useEffect,useState} from 'react';
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import {AppBar,Box,Toolbar,Typography,Container,Button,Stack} from '@mui/material';
+import {AppBar,Toolbar,Typography,Container,Button,Stack} from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import UserSettings from './UserSettings'
 import {setAccessToken, isSignedIn } from '../../Redux/Actions/LoginRegisterAction';
@@ -20,7 +20,6 @@ const NavBar = (props) => {
             setTimeout(() => {
               props.dispatch(isSignedIn(false));
               props.dispatch(setAccessToken('')); 
-              alert('session expired');
               navigate('/')
             }, timeout);
           }
@@ -58,7 +57,7 @@ const NavBar = (props) => {
          {
           props.isSignedIn===true? (
             <>
-            <Button color="secondary" variant="contained"  component={Link} to={'/DashBoard'}>DashBoard</Button>
+            <Button color="secondary" variant="contained"  component={Link} to={'/dashBoard'}>DashBoard</Button>
             <Button color="secondary" variant="contained"  component={Link} to={'/analytics'}>Analytics</Button>
             </>
           ): null
