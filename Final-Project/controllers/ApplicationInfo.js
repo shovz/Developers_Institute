@@ -1,87 +1,192 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import db from '../config/Database.js';
+import jwt from 'jsonwebtoken';
 
-export const getApplication= async (req,res)=>{
+
+export const getUserId= async (req,res)=>{
+    const accessToken = req.cookies.accessToken;
+    // console.log('shoval getUserId', accessToken);
+    if(accessToken===null) return res.sendStatus(401);
+    jwt.verify(accessToken,process.env.ACCESS_TOKEN_SECRET,async (err,decoded)=>{
+        // console.log(decoded.email);
+        if(err) return res.sendStatus(403);
+       
+        try {
+            db.select('user_id')
+            .from ('users')
+            .whereILike('email', `%${decoded.email}%`)
+            .then(application=>{
+                // console.log(application);
+                res.json(application[0])
+                });
+
+        } catch(e) {
+            return res.sendStatus(403);
+        };
+        
+    });
+};
+
+export const getLogs= async (req,res)=>{
+    const accessToken = req.cookies.accessToken;
+    // console.log('shoval getLogs', accessToken);
+    if(accessToken===null) return res.sendStatus(401);
+    jwt.verify(accessToken,process.env.ACCESS_TOKEN_SECRET,async (err,decoded)=>{
+        console.log(decoded.email);
+        if(err) return res.sendStatus(403);
+       
+        try {
+            db.select('*')
+            .from ('applications')
+            .join('users','users.user_id','applications.user_id')
+            .join('logs','logs.application_id','applications.application_id')
+            .join('contact_info','contact_info.application_id','applications.application_id')
+            .whereILike('email', `%${decoded.email}%`)
+            .then(application=>{
+                console.log(application);
+                res.json(application)
+                });
+
+        } catch(e) {
+            return res.sendStatus(403);
+        };
+        
+    });
+};
+
+export const getApplied= async (req,res)=>{
+    console.log('shoval applied');
     try{
-        db.select('*')
-        .from ('applications')
-        .innerJoin('users','users.user_id','applications.user_id')
-        .innerJoin('interviews','interviews.application_id','applications.application_id')
-        .where('email','test@gmail.com')
-        .then(application=>
-            res.json(application)
+        getJobAppFromDB('applied')
+        .then(application=>{
+            console.log(application);
+            res.json(application)}
             );
     } catch(e){
         console.log(e);
     }
 };
 
-export const register = async (req,res)=>{  
-    const {fname,lname,email,password,xp_years,gender} = req.body;
-    const salt = await bcrypt.genSalt();
-    const hashPassword = await bcrypt.hash(password,salt);
+export const getHr= async (req,res)=>{
+    // console.log('shoval hr');
     try{
-        checkIfExists(email) //checking if user exist
-        .then(data=>{
-            if(!data.length){ 
-                db('users').insert({
-                    fname,
-                    lname,
-                    email,
-                    password:hashPassword,
-                    xp_years,
-                    gender
-              })
-              .returning ('*')
-              .then (db_user=>{
-                console.log(db_user);
-                res.json(db_user[0]);
-              })
-            } 
-            else {
-                res.status(400).json({msg: 'User already exists'})
-            }
-        });
+        getJobAppFromDB('hr')
+        .then(application=>{
+            res.json(application)}
+            );
     } catch(e){
-        res.status(404).json({msg: 'Email already exists'})
+        console.log(e);
     }
-
 };
 
-export const signIn = (req,res)=>{
-    const {email,password} = req.body;
-     try{
-        isSignedIn(email)
-        .then(async (db_users)=>{
-            if(!db_users.length) return res.status(404).json({msg: 'Email or Password is incorect'});
-            const match = await bcrypt.compare(password,db_users[0].password);
-            if(!match) return res.status(404).json({msg: 'Email or Password is incorect'});
-            const {fname,lname} = db_users[0];
-            const accessToken =
-            jwt.sign({fname,lname,email},process.env.ACCESS_TOKEN_SECRET,{
-                expiresIn:'1h'
-            })
-            res.cookie('accessToken',accessToken,{
-                httpOnly:true,
-                maxAge: 3600*1000
-            });
-            res.json(accessToken);
-           
-        });
-    
+export const getTechincal= async (req,res)=>{
+    // console.log('shoval Techincal');
+    try{
+        getJobAppFromDB('techincal')
+        .then(application=>{
+            res.json(application)}
+            );
     } catch(e){
-        res.status(404).json({msg: 'Email not found'})
+        console.log(e);
     }
+};
+
+export const getOffer= async (req,res)=>{
+    // console.log('shoval Offer');
+    try{
+        getJobAppFromDB('offer')
+        .then(application=>{
+            // console.log(application);
+            res.json(application)}
+            );
+    } catch(e){
+        console.log(e);
+    }
+};
+
+const getJobAppFromDB =(stage)=>{
+    return (db.select('*')
+    .from ('applications')
+    .join('users','users.user_id','applications.user_id')
+    .join('logs','logs.application_id','applications.application_id')
+    .where('stage',stage))
 
 }
 
-export const signOut = async (req,res)=>{
-    const accessToken = req.cookies.accessToken;
-    if(!accessToken) return res.sendStatus(204);
-    res.clearCookie('accessToken');
-    return res.sendStatus(200);
+export const saveJobInfo = async (req,res)=>{  
+    // console.log('shoval saveJobInfo',req.body.application);
+    insertToApplications(req.body.application);
+    insertToLogs(req.body.application);
+    insertContactInfo(req.body.application);
+};
 
-
+const insertToApplications =(application)=>{
+    console.log(application);
+    try{
+        db('applications').insert({
+            user_id:application.user_id,
+            // current_stage:application.current_stage,
+            company:application.company,
+            active:application.active,
+            salary:application.salary,
+            post_url:application.post_url,
+            website:application.website,
+            position:application.position,
+            job_description:application.job_description,
+            location:application.location,
+            createdat:application.createdat,
+            endedat:application.endedat,
+        })
+        .returning ('*')
+        .then (appTable_data=>{
+            console.log(appTable_data);
+            return appTable_data
+        })
+    } catch(e){
+        res.status(404).json({msg: 'applications table couldnt insert'})
+    }
 }
-
+const insertToLogs =(application)=>{
+    try{
+        db('logs').insert({
+            application_id :application.application_id,
+            method:application.method,
+            stage:application.stage,
+            date:application.date,
+            notes:application.notes,
+            assignment:application.assignment,
+            assignment_date:application.assignment_date,
+            completed:application.completed,
+            rejected:application.rejected,
+            refused:application.refused,
+            reason:application.reason,
+            offer:application.offer,
+            offer_details :application.offer_details,
+        })
+        .returning ('*')
+        .then (logs_data=>{
+            console.log(logs_data);
+            return logs_data
+        })
+    } catch(e){
+        res.status(404).json({msg: 'logs table couldnt insert'})
+    }
+}
+const insertContactInfo =(application)=>{
+    try{
+        db('contact_info').insert({
+            application_id:application.application_id,
+            contact_fname:application.contact_fname,
+            contact_lname:application.contact_lname,
+            contact_email:application.contact_email,
+            contact_linkedin:application.contact_linkedin,
+            contact_phone: application.contact_phone,
+        })
+        .returning ('*')
+        .then (contact_data=>{
+            console.log(contact_data);
+            return contact_data
+        })
+    } catch(e){
+        res.status(404).json({msg: 'contact_info table couldnt insert'})
+    }
+}

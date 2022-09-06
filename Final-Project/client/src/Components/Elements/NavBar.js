@@ -6,7 +6,8 @@ import jwt_decode from 'jwt-decode';
 import {AppBar,Toolbar,Typography,Container,Button,Stack} from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import UserSettings from './UserSettings'
-import {setAccessToken, isSignedIn } from '../../Redux/Actions/LoginRegisterAction';
+import {setAccessToken } from '../../Redux/Actions/LoginRegisterAction';
+import { setUserId } from '../../Redux/Actions/DashboardAction';
 
 
 const NavBar = (props) => {
@@ -17,9 +18,12 @@ const NavBar = (props) => {
           if(props.accessToken){
             const decode = jwt_decode(props.accessToken)
             const timeout = decode.exp*1000 - new Date().getTime();
+            const id = decode.user_id;
+            // console.log('shoval NavBar user id',id);
+            setUserId(id)
             setTimeout(() => {
-              props.dispatch(isSignedIn(false));
               props.dispatch(setAccessToken('')); 
+              localStorage.removeItem('accessToken');
               navigate('/')
             }, timeout);
           }
@@ -55,7 +59,7 @@ const NavBar = (props) => {
           <Stack direction="row"  spacing={2} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button color="secondary" variant="contained"  component={Link} to={'/'}>Home</Button>
          {
-          props.isSignedIn===true? (
+          props.accessToken? (
             <>
             <Button color="secondary" variant="contained"  component={Link} to={'/dashBoard'}>DashBoard</Button>
             <Button color="secondary" variant="contained"  component={Link} to={'/analytics'}>Analytics</Button>
@@ -66,7 +70,7 @@ const NavBar = (props) => {
           </Stack>
 
           {
-            props.isSignedIn===false? (
+            !props.accessToken? (
               <Stack direction="row"  spacing={2} >
               <Button color="secondary"  variant="contained" component={Link} to={'/register'}>Register</Button>
               <Button color="secondary" variant="contained"  component={Link} to={'/signIn'}>SignIn</Button>
@@ -83,8 +87,7 @@ const NavBar = (props) => {
 
 const mapStateToProps=(state)=>{
   return {
-    accessToken  : state.accessToken,
-    isSignedIn : state.isSignedIn
+    accessToken  : state.setInitState.accessToken,
   }
 }
 

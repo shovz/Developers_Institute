@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import applications from '../../LocalDB/applicationDb.json'
 import {TextField} from '@mui/material';
 
 
 export const Notes = (props) => {
-    const {notes} = applications[0]
+  const {application_id} = props;
+
 
   return (
       <div style={{
@@ -17,13 +17,16 @@ export const Notes = (props) => {
             multiline
             rows={14}
             sx={{width:'550px'}}
-            defaultValue={notes}
-            />   
+            defaultValue={
+              application_id? 'Add Notes':null         
+            }/> 
       </div>
   )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  application_id: state.setjobApp.application_id
+})
 
 const mapDispatchToProps = {}
 

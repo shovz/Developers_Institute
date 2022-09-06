@@ -53,9 +53,9 @@ export const signIn = (req,res)=>{
             if(!db_users.length) return res.status(404).json({msg: 'Email or Password is incorect'});
             const match = await bcrypt.compare(password,db_users[0].password);
             if(!match) return res.status(404).json({msg: 'Email or Password is incorect'});
-            const {fname,lname} = db_users[0];
+            const {fname,lname,user_id} = db_users[0];
             const accessToken =
-            jwt.sign({fname,lname,email},process.env.ACCESS_TOKEN_SECRET,{
+            jwt.sign({fname,lname,email,user_id},process.env.ACCESS_TOKEN_SECRET,{
                 expiresIn:'1h'
             })
             res.cookie('accessToken',accessToken,{
@@ -90,6 +90,6 @@ function checkIfExists(email){
 
 //checking if user exist
  function isSignedIn(email){
-  return db.select('fname','lname','password').from ('users')
+  return db.select('fname','lname','password','user_id').from ('users')
   .where({email});
 }

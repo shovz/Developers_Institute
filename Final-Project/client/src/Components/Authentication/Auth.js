@@ -8,6 +8,7 @@ export const Auth = (props) =>{
     const navigate = useNavigate();
 
     useEffect(()=>{
+      
       const verify = async()=>{
         try{
           let response = await axios.get('/verify',{
@@ -16,7 +17,6 @@ export const Auth = (props) =>{
               'Content-Type':'application/json'
             }
           });
-          // console.log(response);
           if(response.status === 200){
             setRedirect(true)
           }
@@ -27,7 +27,6 @@ export const Auth = (props) =>{
       }
       verify();
     },[])
-
     return (
       redirect ? props.children : null
     )

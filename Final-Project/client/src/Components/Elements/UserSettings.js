@@ -6,7 +6,7 @@ import axios from 'axios';
 // import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
-import {setAccessToken, isSignedIn } from '../../Redux/Actions/LoginRegisterAction';
+import {setAccessToken} from '../../Redux/Actions/LoginRegisterAction';
 
 const settings = ['Profile', 'Analytics', 'Signout'];
 
@@ -32,7 +32,7 @@ function UserSettings(props) {
           navigate('/analytics');
         break;
       case "Signout":
-            props.dispatch(isSignedIn(false));
+            localStorage.removeItem('accessToken');
             props.dispatch(setAccessToken('')); 
             axios.delete('/signOut')
             .then(() => navigate('/'));
@@ -75,8 +75,8 @@ function UserSettings(props) {
 
 const mapStateToProps=(state)=>{
   return {
-    accessToken  : state.accessToken,
-    isSignedIn : state.isSignedIn
+    accessToken  : state.setInitState.accessToken,
+    isSignedIn : state.setInitState.isSignedIn
   }
 }
 export default  connect(mapStateToProps)(UserSettings);
