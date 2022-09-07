@@ -114,13 +114,12 @@ const getJobAppFromDB =(stage)=>{
 
 export const saveJobInfo = async (req,res)=>{  
     // console.log('shoval saveJobInfo',req.body.application);
-    insertToApplications(req.body.application);
-    insertToLogs(req.body.application);
-    insertContactInfo(req.body.application);
+     insertToApplications(req.body.application);
+     insertToLogs(req.body.application);
+     insertContactInfo(req.body.application);
 };
 
 const insertToApplications =(application)=>{
-    console.log(application);
     try{
         db('applications').insert({
             user_id:application.user_id,
@@ -138,14 +137,15 @@ const insertToApplications =(application)=>{
         })
         .returning ('*')
         .then (appTable_data=>{
-            console.log(appTable_data);
-            return appTable_data
+            // console.log(appTable_data);
+            // return appTable_data
         })
     } catch(e){
         res.status(404).json({msg: 'applications table couldnt insert'})
     }
 }
 const insertToLogs =(application)=>{
+    console.log("shoval inserlogs app id",application.application_id);
     try{
         db('logs').insert({
             application_id :application.application_id,
@@ -155,7 +155,7 @@ const insertToLogs =(application)=>{
             notes:application.notes,
             assignment:application.assignment,
             assignment_date:application.assignment_date,
-            completed:application.completed,
+            completed_ass:application.completed_ass,
             rejected:application.rejected,
             refused:application.refused,
             reason:application.reason,
@@ -165,13 +165,15 @@ const insertToLogs =(application)=>{
         .returning ('*')
         .then (logs_data=>{
             console.log(logs_data);
-            return logs_data
+            // return logs_data
         })
     } catch(e){
         res.status(404).json({msg: 'logs table couldnt insert'})
     }
 }
 const insertContactInfo =(application)=>{
+    console.log("shoval insertContactInfo app id",application.application_id);
+
     try{
         db('contact_info').insert({
             application_id:application.application_id,
@@ -184,7 +186,7 @@ const insertContactInfo =(application)=>{
         .returning ('*')
         .then (contact_data=>{
             console.log(contact_data);
-            return contact_data
+            // return contact_data
         })
     } catch(e){
         res.status(404).json({msg: 'contact_info table couldnt insert'})

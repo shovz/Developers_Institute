@@ -13,6 +13,7 @@ import { setAppId } from '../../Redux/Actions/DashboardAction';
 import { setJobActive,setJobStage } from '../../Redux/Actions/InsertJobInfo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { resetJobApp } from '../../Redux/Actions/ResetApllicationFrom';
 
 
 export const JobApplicationInfo = (props) => {
@@ -21,7 +22,7 @@ export const JobApplicationInfo = (props) => {
   const [label, setLabel] = useState('Active');
   const [color, setColor] = useState('success');
   const {IsNewApp} = props;
-
+  const [bla, setBla] = useState(true);
   const [logs,setLogs]= useState([]);
   
   const [stage, setStage] = useState('Applied');
@@ -77,23 +78,21 @@ export const JobApplicationInfo = (props) => {
   };
 
   const handleActiveChange = (event) => {
-    console.log('asdasd',event.target.checked);
-    console.log(active);
-    setActive(event.target.checked);
-        console.log(active);
-
-    // props.dispatch(setJobActive(event.target.checked))
+    props.dispatch(setJobActive(!active))
+    setActive(!active)
     
     if(label==='Active'){
       setColor('default');
       setLabel('InActive');
-    }
 
-    if(label==='InActive'){
+    }else if(label==='InActive'){
       setColor('success');
       setLabel('Active');
     }
+
+    
   };
+
 
   return (
     <div style={{display:'flex',width:'100%'}}>
@@ -128,10 +127,10 @@ export const JobApplicationInfo = (props) => {
           </Stack>
           <div style={{display:'flex',flexDirection:'column',
           justifyContent:'flex-start', alignItems:'flex-end',width:'30%'}}>
-              <IconButton onClick={()=> 
+              <IconButton onClick={(e)=> 
                 {
-                  props.dispatch(setAppId(props.application_id+1))
                   props.dispatch(setDashboardStyle('none'))
+                  // window.location.reload(false);
                 }
                 }>
                 <CloseIcon />
@@ -148,7 +147,11 @@ export const JobApplicationInfo = (props) => {
                   /> 
               </div>
               <Button 
-                onClick={()=>saveJobInfo()}
+                onClick={(e)=>{
+                  e.preventDefault();
+                  saveJobInfo()
+                  props.dispatch(resetJobApp(props.application_id+1));
+                }}
                 sx={{m:'10px'}} 
                 size='small'
                 variant='contained'>

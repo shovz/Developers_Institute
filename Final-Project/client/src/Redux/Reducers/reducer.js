@@ -38,24 +38,93 @@ const jobAppInfo={
         // contact_id: 1,
         contact_fname: '',
         contact_lname: '',
+        contact_pos:'',
         contact_email: '',
         contact_linkedin: '',
         contact_phone: ''
 }
 
+
+
  const setjobApp = ((state=jobAppInfo,action={})=>{
-    // console.log('shoval setjobApp');
     switch (action.type) {
-    case 'SET_USER_ID':
-        return {...state ,user_id:action.payload}
-      case 'SET_APP_ID':
-        // console.log('shoval action payload',action.payload);
-        return {...state ,application_id:action.payload}
-      default:
-        return state
+        case 'SET_USER_ID':
+            return {...state ,user_id:action.payload}
+        case 'SET_APP_ID':
+             return {...state ,application_id:action.payload}
+        case 'CHANGE_COMPANY':    
+            return {...state ,company:action.payload}
+        case 'CHANGE_ACTIVE':
+            return {...state ,active:action.payload}
+        case 'CHANGE_SALARY':
+            return {...state ,salary:action.payload}
+        case 'CHANGE_POST_URL':
+             return {...state ,post_url:action.payload}
+        case 'CHANGE_WEBSITE':    
+            return {...state ,website:action.payload}
+        case 'CHANGE_POSITION':
+            return {...state ,position:action.payload}
+        case 'CHANGE_JOB_DESC':
+            return {...state ,job_description:action.payload}
+        case 'CHANGE_LOCATION':
+            return {...state ,location:action.payload}
+        case 'CHANGE_CREATED_DATE':    
+            return {...state ,createdat:action.payload}
+        case 'CHANGE_ENDED_DATE':
+            return {...state ,endedat:action.payload}
+        case 'CHANGE_METHOD':
+            return {...state ,method:action.payload}
+        case 'CHANGE_STAGE':
+            return {...state ,state:action.payload}
+        case 'CHANGE_LOG_DATE':    
+            return {...state ,log_date:action.payload}
+        case 'CHANGE_ASSIGNMENT':
+            return {...state ,assignment:action.payload}  
+        case 'CHANGE_ASS_DATE':
+            return {...state ,assignment_date:action.payload}
+        case 'CHANGE_COMPLETED_ASS':
+            return {...state ,completed_ass:action.payload}
+        case 'CHANGE_REJECTED':
+            return {...state ,rejected:action.payload}
+        case 'CHANGE_REFUSED':    
+            return {...state ,refused:action.payload}
+        case 'CHANGE_REASON':
+            return {...state ,reason:action.payload}             
+        case 'CHANGE_OFFER':    
+            return {...state ,offer:action.payload}
+        case 'CHANGE_OFFER_DETAILS':
+            return {...state ,offer_details:action.payload}  
+        
+
+
+        case 'CHANGE_CONTACT_FNAME':
+            return {...state ,contact_fname:action.payload}  
+        case 'CHANGE_CONTACT_LNAME':
+            return {...state ,contact_lname:action.payload}
+        case 'CHANGE_CONTACT_POS':
+            return {...state ,contact_pos:action.payload}
+        case 'CHANGE_CONTACT_EMAIL':
+            return {...state ,contact_email:action.payload}
+        case 'CHANGE_CONTACT_LINKEDIN':
+            return {...state ,contact_linkedin:action.payload}
+        case 'CHANGE_CONTACT_PHONE':    
+            return {...state ,contact_phone:action.payload}
+
+
+        case 'CHANGE_NOTES':    
+          return {...state ,notes:action.payload}
+
+        case 'RESET':
+            const temp = {...jobAppInfo,application_id:action.payload}
+            console.log('shoval Reset action',temp);
+          return {...jobAppInfo,application_id:action.payload}
+        default:
+            return {...state}
     }
 
 })
+
+
 
 const setInitState = ((state=initState,action={})=>{
     // console.log('shoval setInitState');
@@ -76,6 +145,6 @@ const setInitState = ((state=initState,action={})=>{
 
 export const reducer =  combineReducers({
     setjobApp,
-    setInitState
+    setInitState,
   })
 

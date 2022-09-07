@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {TextField} from '@mui/material';
-
+import { setNotes } from '../../Redux/Actions/InsertNotes';
 
 export const Notes = (props) => {
   const {application_id} = props;
@@ -9,16 +9,16 @@ export const Notes = (props) => {
 
   return (
       <div style={{
-        // margin:'0 auto',
         padding:'10px 5px',
         }}>
-        <TextField size='small' 
+        <TextField 
+            onChange={(e)=>props.dispatch(setNotes(e.target.value))}
             label="Notes"
             multiline
             rows={14}
             sx={{width:'550px'}}
             defaultValue={
-              application_id? 'Add Notes':null         
+              application_id? '':null         
             }/> 
       </div>
   )

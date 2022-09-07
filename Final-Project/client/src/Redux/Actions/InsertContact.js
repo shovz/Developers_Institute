@@ -1,5 +1,6 @@
 const CHANGE_CONTACT_FNAME = 'CHANGE_CONTACT_FNAME';
 const CHANGE_CONTACT_LNAME = 'CHANGE_CONTACT_LNAME';
+const CHANGE_CONTACT_POS = 'CHANGE_CONTACT_POS';
 const CHANGE_CONTACT_EMAIL = 'CHANGE_CONTACT_EMAIL';
 const CHANGE_CONTACT_LINKEDIN = 'CHANGE_CONTACT_LINKEDIN';
 const CHANGE_CONTACT_PHONE = 'CHANGE_CONTACT_PHONE';
@@ -14,9 +15,8 @@ export const  setContactLname= (lname)=>(dispatch)=>{
 }
 
 export const  setContactPos= (phone)=>(dispatch)=>{
-    dispatch({type:CHANGE_CONTACT_PHONE,payload:phone});
+    dispatch({type:CHANGE_CONTACT_POS,payload:phone});
 }
-
 
 export const  setContactEmail= (email)=>(dispatch)=>{
     dispatch({type:CHANGE_CONTACT_EMAIL,payload:email});

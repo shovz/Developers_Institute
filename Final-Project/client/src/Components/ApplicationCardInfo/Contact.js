@@ -8,11 +8,6 @@ import { setContactFname,setContactLname,setContactPos,
 export const Contact = (props) => {
     const {application_id} = props;
     const [contact_Pos, setContact_Pos] = useState('HR Recuter');
-    const [fname, setFname] = useState('');
-    const [lname, setLname] = useState('');
-    const [email, setEmail] = useState('');
-    const [linkedIn, setLinkedin] = useState('');
-    const [phone, setPhone] = useState('');
 
     const handlePosition = (event) => {
         setContact_Pos(event.target.value);
@@ -76,7 +71,7 @@ export const Contact = (props) => {
                 </div>
                 <div>   
                     <TextField 
-                    onChange={(e)=>props.dispatch(setContactLinkedin(e.target.value))}
+                    onChange={(e)=>props.dispatch(setContactPhone(e.target.value))}
                     size='small' 
                     sx={{width:'350px'}} 
                     label="Phone Number" 
@@ -86,7 +81,7 @@ export const Contact = (props) => {
                 </div>
                 <div>   
                     <TextField 
-                    onChange={(e)=>props.dispatch(setContactPhone(e.target.value))}
+                    onChange={(e)=>props.dispatch(setContactLinkedin(e.target.value))}
                     size='small' 
                     sx={{width:'350px'}} 
                     label="LinkedIn" 

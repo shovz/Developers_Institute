@@ -88,20 +88,19 @@ export const JobInfo = (props) => {
                 }}
               />
             {
-              // console.log(application.active)
-              // !application.active?
-              // (             
-              //   <TextField
-              //   onChange={(e)=>props.dispatch(setEndedat(e.target.value))}
-              //   label="End Date"
-              //   size='small'
-              //   type="datetime-local"
-              //   defaultValue="2022-09-06T10:30"
-              //   sx={{ width: 250 }}
-              //   InputLabelProps={{
-              //     shrink: true,
-              //   }}
-              // />):null
+              !application.active?
+              (             
+                <TextField
+                onChange={(e)=>props.dispatch(setEndedat(e.target.value))}
+                label="End Date"
+                size='small'
+                type="datetime-local"
+                defaultValue="2022-09-06T10:30"
+                sx={{ width: 250 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />):null
             }
           </Stack>
 

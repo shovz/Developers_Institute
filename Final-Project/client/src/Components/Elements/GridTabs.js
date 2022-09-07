@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Typography,IconButton,Card} from '@mui/material';
 import GridTab from './GridTab';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { setDashboardStyle,setAppId } from '../../Redux/Actions/DashboardAction';
+import {setDashboardStyle,setAppId } from '../../Redux/Actions/DashboardAction';
 
 function GridTabs(props) {
   const [stageData,setStageData]= useState([]);
@@ -42,8 +42,9 @@ function GridTabs(props) {
             props.title==='Applied'?(
               <div>
               <IconButton onClick={()=>{
-                 props.dispatch(setDashboardStyle('flex'))
-                props.dispatch(setAppId(props.application_id))
+                console.log('grid tab',props.application_id);
+                props.dispatch(setDashboardStyle('flex'))              
+                // props.dispatch(setAppId(props.application_id+1))
               }}>
                     <AddBoxIcon />
                 </IconButton>
