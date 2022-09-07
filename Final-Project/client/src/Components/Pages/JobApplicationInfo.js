@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect} from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux'
 import {Tabs ,Typography ,Tab, Stack,Button,Select,MenuItem,
@@ -13,7 +13,6 @@ import { setAppId } from '../../Redux/Actions/DashboardAction';
 import { setJobActive,setJobStage } from '../../Redux/Actions/InsertJobInfo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { resetJobApp } from '../../Redux/Actions/ResetApllicationFrom';
 
 
 export const JobApplicationInfo = (props) => {
@@ -22,30 +21,10 @@ export const JobApplicationInfo = (props) => {
   const [label, setLabel] = useState('Active');
   const [color, setColor] = useState('success');
   const {IsNewApp} = props;
-  const [bla, setBla] = useState(true);
-  const [logs,setLogs]= useState([]);
-  
   const [stage, setStage] = useState('Applied');
 
 
-  useEffect(()=>{
-    const getLogs = async()=>{
-      try{
-        let logs = await axios.get(`/getLogs`,{
-          withCredentials:true,
-          headers:{
-            'Content-Type':'application/json'
-          }
-        });
-        props.dispatch(setAppId(logs.data.length+1))
-      }
-      catch(e){
-        console.log(e);
-      }
-    }
-      getLogs();
 
-  },[])
 
 
   const saveJobInfo = async(event) => {
@@ -60,7 +39,9 @@ export const JobApplicationInfo = (props) => {
             'Content-Type':'application/json'
           }
         });
-        console.log('shoval saveJobInfo response=>', response);
+
+        console.log('shoval saveJobInfo last application id=>', response.data);
+        props.dispatch(setAppId(response.data));
       }
     catch(e){
         console.log(e);
@@ -68,19 +49,21 @@ export const JobApplicationInfo = (props) => {
   };
 
 
-  const handleStageChange = (event) => {
-    setStage(event.target.value);
-    props.dispatch(setJobStage(stage))
-    };
-
   const handleTabs = (event, newValue) => {
     setTab(newValue);
   };
 
+  const handleStage= (event) => {
+    // let method_state;
+    // IsNewApp? method_state=event.target.value : method_state=clickedAppData.stage;
+    setStage(event.target.value);
+    props.dispatch(setJobStage(event.target.value))
+  };
+
   const handleActiveChange = (event) => {
-    props.dispatch(setJobActive(!active))
-    setActive(!active)
-    
+   
+    setActive(event.target.checked)
+    props.dispatch(setJobActive(event.target.checked))
     if(label==='Active'){
       setColor('default');
       setLabel('InActive');
@@ -90,7 +73,7 @@ export const JobApplicationInfo = (props) => {
       setLabel('Active');
     }
 
-    
+
   };
 
 
@@ -102,12 +85,14 @@ export const JobApplicationInfo = (props) => {
               <Stack  >
                   <Typography variant='h4'>
                   {
-                    IsNewApp? 'NEW APPLICATION FORM':props.application.company
+                    // 
+                    IsNewApp? 'NEW APPLICATION FORM':null
                   }
                 </Typography>
                 <Typography variant='h7'>
                   {
-                    IsNewApp? 'NEW APPLICATION FORM':props.application.position
+                    // 
+                    IsNewApp? 'NEW APPLICATION FORM':null
                   }
                 </Typography>
               </Stack>
@@ -115,7 +100,7 @@ export const JobApplicationInfo = (props) => {
                 <Select
                       size='small'
                       value={stage}
-                      onChange={handleStageChange}
+                      onChange={(event)=>handleStage(event)}
                       sx={{width:'200px'}}
                       >
                       <MenuItem value={'Applied'}>Applied</MenuItem>
@@ -129,6 +114,7 @@ export const JobApplicationInfo = (props) => {
           justifyContent:'flex-start', alignItems:'flex-end',width:'30%'}}>
               <IconButton onClick={(e)=> 
                 {
+                 
                   props.dispatch(setDashboardStyle('none'))
                   // window.location.reload(false);
                 }
@@ -147,11 +133,7 @@ export const JobApplicationInfo = (props) => {
                   /> 
               </div>
               <Button 
-                onClick={(e)=>{
-                  e.preventDefault();
-                  saveJobInfo()
-                  props.dispatch(resetJobApp(props.application_id+1));
-                }}
+                onClick={()=>saveJobInfo()}
                 sx={{m:'10px'}} 
                 size='small'
                 variant='contained'>
@@ -201,15 +183,23 @@ export const JobApplicationInfo = (props) => {
         </div>
         <Stack spacing={2}>
           {
-            logs.map(app=>{
-              return (
-                <div style={{height:'40px',boxShadow:'1px 5px 10px 0.25px grey',
-                borderRadius:'10px',display:'flex',padding:'5px',alignItems:'center',
-                backgroundColor:'lightgoldenrodyellow'}}>
-                  <Typography variant='h6'>log item</Typography>
-                </div>
-              )
-            })
+            // console.log(props.app_logs)
+            // props.app_logs.map((app,i)=>{
+            //   // console.log(app)
+            //   return (
+            //     <Stack key={i} 
+            //     style={{
+            //     boxShadow:'1px 5px 10px 0.25px grey',
+            //     borderRadius:'10px',
+            //     display:'flex',padding:'5px',
+            //     alignItems:'center',
+            //     backgroundColor:'lightgoldenrodyellow',
+            //     cursor:'pointer'}}>
+            //       <Typography variant='h6'>{app.stage}</Typography>
+            //       <Typography variant='h7'>date of change :{app.createdat}</Typography>
+            //     </Stack>
+            //   )
+            // })
           }
 
         </Stack>
@@ -225,7 +215,8 @@ const mapStateToProps=(state)=>{
     dashboard_display_style  : state.setInitState.dashboard_display_style,
     IsNewApp: state.setInitState.IsNewApp,
     application : state.setjobApp,
-    application_id: state.setjobApp.application_id
+    application_id: state.setjobApp.application_id,
+    app_logs: state.setInitState.app_logs
   }
 }
 

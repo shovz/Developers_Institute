@@ -5,13 +5,13 @@ const initState = {
     accessToken : JSON.parse(localStorage.getItem('accessToken'))|| '',
     dashboard_display_style:'none',
     IsNewApp: true,
-    stages:['Applied', 'Hr', 'Techincal','Offer']
+    stages:['Applied', 'HR', 'Technical','Offer'],
+    app_logs:[]
 }
 
 const jobAppInfo={
         user_id: 1,
         application_id: 1,
-        // current_stage: 2,
         company: '',
         active: true,
         salary: '',
@@ -22,9 +22,8 @@ const jobAppInfo={
         location: '',
         createdat: new Date().toISOString().slice(0, 19).replace('T', ' '),
         endedat: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        // interview_id: 1,
         method: '',
-        stage: 'applied',
+        stage: 'Applied',
         log_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
         notes: '',
         assignment: false,
@@ -35,7 +34,6 @@ const jobAppInfo={
         reason: '',
         offer: '',
         offer_details: '',
-        // contact_id: 1,
         contact_fname: '',
         contact_lname: '',
         contact_pos:'',
@@ -75,7 +73,7 @@ const jobAppInfo={
         case 'CHANGE_METHOD':
             return {...state ,method:action.payload}
         case 'CHANGE_STAGE':
-            return {...state ,state:action.payload}
+            return {...state ,stage:action.payload}
         case 'CHANGE_LOG_DATE':    
             return {...state ,log_date:action.payload}
         case 'CHANGE_ASSIGNMENT':
@@ -115,8 +113,7 @@ const jobAppInfo={
           return {...state ,notes:action.payload}
 
         case 'RESET':
-            const temp = {...jobAppInfo,application_id:action.payload}
-            console.log('shoval Reset action',temp);
+            console.log('action.payload',action.payload);
           return {...jobAppInfo,application_id:action.payload}
         default:
             return {...state}
@@ -133,8 +130,12 @@ const setInitState = ((state=initState,action={})=>{
             return {...state ,accessToken:action.payload}
         case 'CHANGE_DASHBOARD_STYLE':
             return {...state ,dashboard_display_style:action.payload}
-        case 'SET_JOB_INFO':
+        case 'IS_NEW_APP':
             return {...state ,IsNewApp:action.payload}
+        case 'SET_APP_LOGS':
+            return {...state ,app_logs:action.payload}
+        case 'RESET_LOG':
+            return {...state ,app_logs:[]}
         default:
             return {...state}
     }

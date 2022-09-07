@@ -56,11 +56,11 @@ export const signIn = (req,res)=>{
             const {fname,lname,user_id} = db_users[0];
             const accessToken =
             jwt.sign({fname,lname,email,user_id},process.env.ACCESS_TOKEN_SECRET,{
-                expiresIn:'1h'
+                expiresIn:'5h'
             })
             res.cookie('accessToken',accessToken,{
                 httpOnly:true,
-                maxAge: 3600*1000
+                maxAge: 3600*5000
             });
             res.json(accessToken);
            

@@ -4,7 +4,9 @@ import axios from 'axios';
 import {Typography,IconButton,Card} from '@mui/material';
 import GridTab from './GridTab';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import {setDashboardStyle,setAppId } from '../../Redux/Actions/DashboardAction';
+import {setDashboardStyle,setIsNewApp } from '../../Redux/Actions/DashboardAction';
+import { resetJobApp } from '../../Redux/Actions/ResetApllicationFrom';
+import { setAppLog } from '../../Redux/Actions/DashboardAction';
 
 function GridTabs(props) {
   const [stageData,setStageData]= useState([]);
@@ -42,9 +44,10 @@ function GridTabs(props) {
             props.title==='Applied'?(
               <div>
               <IconButton onClick={()=>{
-                console.log('grid tab',props.application_id);
-                props.dispatch(setDashboardStyle('flex'))              
-                // props.dispatch(setAppId(props.application_id+1))
+                props.dispatch(resetJobApp(props.application_id));
+                props.dispatch(setIsNewApp(true));
+                props.dispatch(setDashboardStyle('flex'))       
+                props.dispatch(setAppLog());       
               }}>
                     <AddBoxIcon />
                 </IconButton>
@@ -55,10 +58,11 @@ function GridTabs(props) {
         
         {
           stageData.map((app,index)=>{
-            if(props.title.toLowerCase()===app.stage){
+            // console.log(app.application_id);
+            if(props.title===app.stage){
               return (
                 <GridTab 
-                id = {index}
+                id = {app.application_id}
                 key={index}
                 company={app.company}
                 position={app.position}/>
@@ -75,7 +79,7 @@ function GridTabs(props) {
 }
 const mapStateToProps=(state)=>{
   return {
-    application_id : state.setjobApp.application_id
+    application_id: state.setjobApp.application_id
   }
 
 }

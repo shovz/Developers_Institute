@@ -14,8 +14,8 @@ export const  setContactLname= (lname)=>(dispatch)=>{
     dispatch({type:CHANGE_CONTACT_LNAME,payload:lname});
 }
 
-export const  setContactPos= (phone)=>(dispatch)=>{
-    dispatch({type:CHANGE_CONTACT_POS,payload:phone});
+export const  setContactPos= (pos)=>(dispatch)=>{
+    dispatch({type:CHANGE_CONTACT_POS,payload:pos});
 }
 
 export const  setContactEmail= (email)=>(dispatch)=>{

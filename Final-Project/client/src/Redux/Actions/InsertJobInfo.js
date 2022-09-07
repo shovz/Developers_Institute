@@ -26,6 +26,7 @@ export const  setCompany= (value)=>(dispatch)=>{
 }
 
 export const  setJobActive= (value)=>(dispatch)=>{
+    // console.log(value);
     dispatch({type:CHANGE_ACTIVE,payload:value});
 }
 
