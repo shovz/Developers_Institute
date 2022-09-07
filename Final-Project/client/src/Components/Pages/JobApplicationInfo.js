@@ -116,7 +116,7 @@ export const JobApplicationInfo = (props) => {
                 {
                  
                   props.dispatch(setDashboardStyle('none'))
-                  // window.location.reload(false);
+                  window.location.reload(true);
                 }
                 }>
                 <CloseIcon />

@@ -1,5 +1,4 @@
-import {useEffect,useRef} from 'react';
-import axios from 'axios';
+import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import {Container,Grid} from '@mui/material';
 import GridTabs from '../Elements/GridTabs';
@@ -7,28 +6,7 @@ import JobApplicationInfo from './JobApplicationInfo';
 
 
 function DashBoard(props) {
-
-
-  // useEffect(()=>{
-  //   const getUserId = async()=>{
-  //     try{
-  //       let id = await axios.get(`/dashboard`,{
-  //         withCredentials:true,
-  //         headers:{
-  //           'Content-Type':'application/json'
-  //         }
-  //       });
-  //         props.dispatch(setUserId(id.data.user_id))
-  //         console.log('shoval setUserId',id.data);
-  //     }
-  //     catch(e){
-  //       console.log(e);
-  //     }
-  //   }
-  //   getUserId();
-  // },[])
-
-
+  
   return (
     <div style={{position:'relative'}}>
     <Container maxWidth={'lg'} sx={{display:'flex',mt:4}}>
