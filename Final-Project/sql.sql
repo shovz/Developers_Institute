@@ -51,7 +51,8 @@ CREATE TABLE logs (
     refused BOOLEAN DEFAULT false ,
     reason reasons,
     offer VARCHAR(100),
-    offer_details TEXT    
+    offer_details TEXT,
+    active_stage BOOLEAN
 );
 
 CREATE TABLE contact_info (

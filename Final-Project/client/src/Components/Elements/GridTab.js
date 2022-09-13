@@ -2,11 +2,13 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 
 import {Typography,Card} from '@mui/material';
-import {setDashboardStyle,setAppLog,setIsNewApp} from '../../Redux/Actions/DashboardAction';
+import {setDashboardStyle,setAppLog,setIsNewApp,setAppId} from '../../Redux/Actions/DashboardAction';
 
-function GridTabs(props) {
+export const GridTabs= (props) =>{
+  const {company,position,id} = props;
 
   const getRandomColor = ()=> {
+ 
     let letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -15,9 +17,10 @@ function GridTabs(props) {
     return color;
   }
 
-  const getApplicationLogs = async()=>{
-    const application_id = props.id;
-    // console.log('shoval getApplicationLogs',application_id);
+  const getApplicationLogs = async(application_id)=>{
+    // const application_id = props.application_id;
+    await props.dispatch(setAppId(application_id));
+    console.log('shoval getApplicationLogs',application_id);
     try{
       const logs_fromDB = await axios.post('/getApplicationLogs',{
         application_id
@@ -36,14 +39,14 @@ function GridTabs(props) {
   }
  
 
-  const {company,position,id} = props;
+
   return (
         <Card id={id} sx={{textAlign:'center',height:'70px',pt:2,m:1,
         backgroundColor:getRandomColor(),cursor:'pointer'}} 
         onClick={()=>{
           props.dispatch(setIsNewApp(false));
           props.dispatch(setDashboardStyle('flex'))
-          getApplicationLogs();
+          getApplicationLogs(id);
         }}>
           <Typography variant='h6' component={'div'}> {company}</Typography>
           <Typography variant='h7' component={'div'}> {position}</Typography>
