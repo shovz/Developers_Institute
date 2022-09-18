@@ -57,6 +57,7 @@ function GridTabs(props) {
 const mapStateToProps=(state)=>{
   return {
     application_id: state.setjobApp.application_id,
+    refresh: state.setInitState.stages,
     active_jobApps: state.setInitState.active_jobApps,
 
   }

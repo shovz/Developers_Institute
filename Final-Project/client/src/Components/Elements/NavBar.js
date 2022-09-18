@@ -47,7 +47,7 @@ const NavBar = (props) => {
             'Content-Type':'application/json'
           }
         });
-        console.log('shoval get profile',profile.data[0]);
+        // console.log('shoval get profile',profile.data[0]);
         localStorage.setItem('profile',JSON.stringify(profile.data[0]));
         props.dispatch(setprofile(profile.data[0]));
 

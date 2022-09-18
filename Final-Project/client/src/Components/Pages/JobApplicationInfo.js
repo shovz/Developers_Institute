@@ -42,8 +42,9 @@ export const JobApplicationInfo = (props) => {
           }
         });
 
-        console.log('shoval all active data=>', response.data);
+        // console.log('shoval all active data=>', response.data);
         props.dispatch(setActiveJobApp(response.data));
+        // localStorage.setItem('activeJobs',JSON.stringify(response.data))
         const lastinsetedApp = 0;
         props.dispatch(setAppId(response.data[lastinsetedApp].application_id));
       }
@@ -127,7 +128,7 @@ export const JobApplicationInfo = (props) => {
                   label={label}
                   control={
                     <Switch 
-                    checked={IsNewApp?active:thisAppLog.active}
+                    checked={active}
                     onChange={handleActiveChange}
                     color={color}/>
                     } 
