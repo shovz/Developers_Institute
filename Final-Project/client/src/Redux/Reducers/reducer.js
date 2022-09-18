@@ -3,11 +3,17 @@ import { combineReducers } from 'redux'
 
 const initState = {
     accessToken : JSON.parse(localStorage.getItem('accessToken'))|| '',
+    profile: JSON.parse(localStorage.getItem('profile'))||{
+        fname:'',
+        lname:'',
+        email:'',
+        
+    },
     dashboard_display_style:'none',
     IsNewApp: true,
     stages:['Applied', 'HR', 'Technical','Offer'],
     app_logs:[],
-    active_jobApps:[]
+    active_jobApps: [],
 }
 
 const jobAppInfo={
@@ -132,6 +138,8 @@ const setInitState = ((state=initState,action={})=>{
     switch (action.type) {
         case 'SET_ACCESS_TOKEN':
             return {...state ,accessToken:action.payload}
+        case 'SET_PROFILE':
+            return {...state,profile:action.payload}
         case 'CHANGE_DASHBOARD_STYLE':
             return {...state ,dashboard_display_style:action.payload}
         case 'IS_NEW_APP':
