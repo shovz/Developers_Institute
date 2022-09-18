@@ -5,22 +5,29 @@ import './landing.css'
 export const Landing = (props) => {  
   return (
     <div>
-        <div className='main'>
-            <Container maxWidth="sm" sx={{position:'absolute'
-            ,left:'150px',top:'150px'}}>
-            <Typography  variant='h2'>Landing Page</Typography>
-             <Typography variant='p'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip
-              </Typography>
+        <Grid container className='main'>
+            <Grid item sx={{mt:10,mx:5}} xs={3}  >
+              <Container sx={{maxWidth:'150px'}}>
+                <Typography variant='h3'>MY JOB TRACKER</Typography>
+                <Typography  variant='p'>
+                Track and analyze your job applications all in one place.
+                  </Typography>
 
-              <Button sx={{my:2}} variant='contained' href='/register'>Lets Get started</Button>
+                  <div>
+                    {!props.accessToken?
+                    (
+                          <Button sx={{my:2}} variant='contained' href='/register'>Lets Get started</Button>
+                    ):
+                    (
+                      <Button sx={{my:2}} variant='contained' href='/dashBoard'>My Applications</Button>
+                    )
+                  }
+                  
+                  </div>
 
-            </Container>
-            
-        </div>
+              </Container>
+            </Grid>
+        </Grid>
 
 
         <Card 
@@ -30,12 +37,25 @@ export const Landing = (props) => {
         alignItems:'center',
         pt:2}}>
                 <Typography variant='h2'>About this Project</Typography>
-                <Card sx={{backgroundColor:'lightblue'}}>
+                <div sx={{backgroundColor:'lightblue'}}>
                   <Grid container direction={'row'} pt={3} pb={10} spacing={2} justifyContent={'center'} alignItems={'center'}>
-                    <Grid item xs={6}><Typography variant='p'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography></Grid>
-                    <Grid item xs={3}><Typography variant='h5'>Landing</Typography></Grid>
+                    <Grid item xs={6}>
+                      <Typography variant='p'>
+                      Growing up I learned that anything not written down will be forgotten,
+                      with that said, the job search process can be long and tedious.
+                      You need to remember which position you submitted your resume for,
+                      which company you are in contact with, at what stage of the process you are in,
+                      the dates of submitting the assignment, etc.
+
+                      I wanted to create a project that would help me and others keep
+                      track of all these jobs applications and also enable analyzing them,
+                      through where I submitted my resume and from where I got the most returns,
+                      field of work, employment conditions, etc.
+                      </Typography>
+                    </Grid>
+                    {/* <Grid item xs={3}><Typography variant='h5'>Landing</Typography></Grid> */}
                   </Grid>
-                </Card>
+                </div>
         </Card>
 
 
@@ -49,14 +69,14 @@ export const Landing = (props) => {
         pt:2}}>
            <Typography variant='h2' >About Me</Typography>
             <Container sx={{m:5,display:'flex',justifyContent:'space-between'}}>
-              <Card  sx={{ maxWidth: 180}}>
+              <div  style={{ maxWidth: 180}}>
                   <CardMedia
                   component="img"
                   height="140"
                   image="https://y26uq11r8xr1zyp0d3inciqv-wpengine.netdna-ssl.com/wp-content/uploads/2019/10/35-1-1024x597.jpg"
                   alt="green iguana"
                   />
-              </Card>
+              </div>
               <Card  sx={{ maxWidth: 180}}>
 
                   <CardMedia
@@ -133,8 +153,9 @@ export const Landing = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  accessToken  : state.setInitState.accessToken,
 
-const mapDispatchToProps = {}
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing)
+export default connect(mapStateToProps)(Landing)

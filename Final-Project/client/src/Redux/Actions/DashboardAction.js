@@ -11,7 +11,6 @@ export const  setDashboardStyle= (style)=>(dispatch)=>{
 }
 
 export const  setUserId= (id)=>(dispatch)=>{
-    // console.log('shoval set app id', id);
     dispatch({type:SET_USER_ID,payload:id});
 }
 
@@ -33,9 +32,8 @@ export const  setIsNewApp= (isNewApp)=>(dispatch)=>{
 
 
 export const  setActiveJobApp= (jobApps)=>(dispatch)=>{
-    // console.log(jobApps);
-    // jobApps.map(jobapp=>{
-    //     if(jobApps.stage==='')
-    // })
     dispatch({type:SET_ACTIVE_JOB_APP,payload:jobApps});
 }
+
+
+

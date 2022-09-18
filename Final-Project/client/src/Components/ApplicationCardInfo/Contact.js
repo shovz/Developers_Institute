@@ -9,6 +9,9 @@ export const Contact = (props) => {
     const {IsNewApp,application} = props;
     const [contact_Pos, setContact_Pos] = useState('HR Recuter');
 
+    const newApplicaiton = props.application;
+    const thisAppLog = props.thisAppLog|| newApplicaiton;
+
     const handlePosition = (event) => {
         setContact_Pos(event.target.value);
         props.dispatch(setContactPos(event.target.value))
@@ -31,7 +34,7 @@ export const Contact = (props) => {
                         sx={{width:'180px'}} 
                         label="First Name" 
                         defaultValue={
-                            IsNewApp?application.contact_fname :null         
+                            IsNewApp?application.contact_fname :thisAppLog.contact_fname         
                         }/>
                     </div>
                     <div>
@@ -41,7 +44,7 @@ export const Contact = (props) => {
                         sx={{width:'180px'}}  
                         label="Last Name" 
                         defaultValue={
-                            IsNewApp? application.contact_lname:null         
+                            IsNewApp? application.contact_lname:thisAppLog.contact_lname         
                         }/>
                     </div>    
                     <TextField
@@ -66,7 +69,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="Email" 
                     defaultValue={
-                        IsNewApp? application.contact_email:null         
+                        IsNewApp? application.contact_email:thisAppLog.contact_email         
                     }/>
                 </div>
                 <div>   
@@ -76,7 +79,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="Phone Number" 
                     defaultValue={
-                        IsNewApp? application.contact_phone:null         
+                        IsNewApp? application.contact_phone:thisAppLog.contact_phone         
                     }/>
                 </div>
                 <div>   
@@ -86,7 +89,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="LinkedIn" 
                     defaultValue={
-                        IsNewApp? application.contact_linkedin:null         
+                        IsNewApp? application.contact_linkedin:thisAppLog.contact_linkedin         
                     }/>
                 </div>
             </Stack>

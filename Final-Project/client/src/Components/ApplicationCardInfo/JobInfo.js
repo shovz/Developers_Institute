@@ -14,8 +14,8 @@ export const JobInfo = (props) => {
   const {IsNewApp} = props;
   const newApplicaiton = props.application;
   const thisAppLog = props.thisAppLog|| newApplicaiton;
-  // console.log('thisAppLog',thisAppLog);
-  // console.log('newApplicaiton',newApplicaiton);
+  // console.log(thisAppLog);
+
   const [method, setMethod] = useState(' ');
   const [assignment, setAssignment] = useState(false);
   const [assCompleted, setAssCompleted] = useState(false);
@@ -155,7 +155,7 @@ export const JobInfo = (props) => {
               sx={{width:'350px'}} 
               label="Location" 
               defaultValue={
-                IsNewApp? newApplicaiton.location:null         
+                IsNewApp? newApplicaiton.location:thisAppLog.location            
               }/>
             </div>
             <div>
@@ -164,7 +164,7 @@ export const JobInfo = (props) => {
               size='small'  
               label="Salary" 
               defaultValue={
-                IsNewApp? newApplicaiton.salary:null         
+                IsNewApp? newApplicaiton.salary:thisAppLog.salary         
               }/>
             </div>   
 
@@ -263,7 +263,7 @@ export const JobInfo = (props) => {
                   rows={14}
                   sx={{width:'450px',mt:6}}
                   defaultValue={
-                    IsNewApp? newApplicaiton.job_description :null         
+                    IsNewApp? newApplicaiton.job_description :thisAppLog.job_description         
                   }/>
             </div>    
       </div>

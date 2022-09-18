@@ -1,14 +1,14 @@
 import express from "express";
-import { getUsers ,signIn,register,signOut} from "../controllers/Users.js";
+import { getProfile ,signIn,register,signOut,delUser} from "../controllers/Users.js";
 import {getUserId,getApplied,getHr,getTechnical,getOffer,getApplicationLogs,saveJobInfo} from "../controllers/ApplicationInfo.js";
 import { VerifyToken } from "../middleware/VerifyToken.js";
 const router = express.Router();
 
-
-router.get('/',getUsers);
+router.post('/delUser', delUser);
 router.post('/register', register);
 router.post('/signIn', signIn);
 router.delete('/signOut', signOut);
+router.post('/profile',getProfile);
 
 
 router.get('/dashboard',getUserId);

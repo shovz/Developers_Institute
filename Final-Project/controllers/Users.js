@@ -2,12 +2,27 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../config/Database.js';
 
-export const getUsers= async (req,res)=>{
+export const getProfile= async (req,res)=>{
+    const {user_id} = req.body;
     try{
-        db.select('*').from ('users')
-        .then(users=>
-            res.json(users)
-            );
+       const profile =  await db.select('email','fname','gender','lname','my_position','xp_years')
+        .from ('users')
+        .where('user_id',user_id)
+        // console.log('server getProfile',profile);
+        res.json(profile)
+    } catch(e){
+        console.log(e);
+    }
+};
+
+export const delUser= async (req,res)=>{
+    const {user_id} = req.body;
+    // console.log('shoval sever del user user id',user_id);
+    try{
+        const response = await 
+        db.from('users').where('user_id',user_id).del()
+        console.log(response);
+        res.json(response)
     } catch(e){
         console.log(e);
     }
@@ -55,7 +70,7 @@ export const signIn = (req,res)=>{
             if(!match) return res.status(404).json({msg: 'Email or Password is incorect'});
             const {fname,lname,user_id} = db_users[0];
             const accessToken =
-            jwt.sign({fname,lname,email,user_id},process.env.ACCESS_TOKEN_SECRET,{
+            jwt.sign({email,user_id},process.env.ACCESS_TOKEN_SECRET,{
                 expiresIn:'5h'
             })
             res.cookie('accessToken',accessToken,{

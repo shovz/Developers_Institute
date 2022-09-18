@@ -28,25 +28,16 @@ export const getUserId= async (req,res)=>{
 };
 
 export const getApplicationLogs= async (req,res)=>{
-    // const accessToken = req.cookies.accessToken;
     const application_id = req.body.application_id;
-    // // console.log('shoval application_id',application_id);
-    // if(accessToken===null) return res.sendStatus(401);
-    // jwt.verify(accessToken,process.env.ACCESS_TOKEN_SECRET,async (err,decoded)=>{
-    //     // console.log(decoded);
-    //     if(err) return res.sendStatus(403);
-       
         try {
             db.select('*')
             .from ('applications')
             .join('users','users.user_id','applications.user_id')
             .join('logs','logs.application_id','applications.application_id')
             .join('contact_info','contact_info.application_id','applications.application_id')
-            // .whereILike('email', `%${decoded.email}%`)
             .where('applications.application_id', `${application_id}`)
             .distinctOn(`stage`)
             .then(applications=>{
-                // console.log('getApplicationLogs application from db', applications);
                 res.json(applications)
                 });
 

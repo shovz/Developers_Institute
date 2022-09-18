@@ -1,18 +1,18 @@
-import {Box,Typography,IconButton,Avatar,Menu} from '@mui/material'
+import {Box,Typography,IconButton,Menu} from '@mui/material'
 import {useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-// import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
 import {setAccessToken} from '../../Redux/Actions/LoginRegisterAction';
+import Avatar from "boring-avatars";
 
-const settings = ['Profile', 'Analytics', 'Signout'];
+const settings = ['Profile', 'DashBoard','Analytics', 'Signout'];
 
 function UserSettings(props) {
   const [anchorElUser, setAnchorElUser] = useState(null);
   let navigate = useNavigate();
+
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -23,11 +23,13 @@ function UserSettings(props) {
   };
 
   const handleSettingClick= (event) => {
-    console.log(event.target.id);
     switch (event.target.id) {
       case "Profile":
           navigate('/profile');
         break;
+      case "DashBoard":
+        navigate('/dashBoard');
+      break;
       case "Analytics":
           navigate('/analytics');
         break;
@@ -42,10 +44,19 @@ function UserSettings(props) {
         break;
     }
   };
+
+
   return (
     <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar/>
+            <Avatar
+              size={40}
+              name={props.profile.fname? props.profile.fname:null}
+              square             
+              variant="beam"
+              colors={["#ffdc08", "#C4B232", "#0c8f8f", "#FFDC08", "#0c8f8f"]}
+            />
+
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}
@@ -76,7 +87,11 @@ function UserSettings(props) {
 const mapStateToProps=(state)=>{
   return {
     accessToken  : state.setInitState.accessToken,
-    isSignedIn : state.setInitState.isSignedIn
+    isSignedIn : state.setInitState.isSignedIn,
+    application : state.setjobApp,
+    profile : state.setInitState.profile,
+
+
   }
 }
 export default  connect(mapStateToProps)(UserSettings);

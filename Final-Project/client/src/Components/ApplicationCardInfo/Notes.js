@@ -5,6 +5,8 @@ import { setNotes } from '../../Redux/Actions/InsertNotes';
 
 export const Notes = (props) => {
   const {IsNewApp,application} = props;
+  const newApplicaiton = props.application;
+  const thisAppLog = props.thisAppLog|| newApplicaiton;
 
   return (
       <div style={{
@@ -17,7 +19,7 @@ export const Notes = (props) => {
             rows={14}
             sx={{width:'550px'}}
             defaultValue={
-              IsNewApp? application.notes:null         
+              IsNewApp? application.notes:thisAppLog.notes         
             }/> 
       </div>
   )

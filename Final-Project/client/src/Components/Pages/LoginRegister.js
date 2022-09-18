@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import {Box,TextField,Button,Radio,RadioGroup,Select,MenuItem, 
         FormControlLabel,FormLabel, Typography} from '@mui/material';
@@ -49,7 +48,7 @@ const LoginRegister = (props) => {
             'Content-Type':'application/json'
           }
         });
-        console.log('signed in token =>',token.data);
+        // console.log('signed in token =>',token.data);
         localStorage.setItem('accessToken',JSON.stringify(token.data));
         props.dispatch(setAccessToken(token.data));
         navigate('/')
@@ -59,6 +58,7 @@ const LoginRegister = (props) => {
       }
     }
   }
+
 
   return (
     <FormContainer>
@@ -152,7 +152,9 @@ const LoginRegister = (props) => {
 
 const mapStateToProps=(state)=>{
   return {
-    accessToken  : state.setInitState.accessToken 
+    accessToken  : state.setInitState.accessToken,
+    application : state.setjobApp,
+
   }
 }
 

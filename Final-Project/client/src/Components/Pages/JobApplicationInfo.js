@@ -220,7 +220,6 @@ const mapStateToProps=(state)=>{
     application : state.setjobApp,
     application_id: state.setjobApp.application_id,
     app_logs: state.setInitState.app_logs,
-    refresh: state.setInitState.stages,
   }
 }
 
