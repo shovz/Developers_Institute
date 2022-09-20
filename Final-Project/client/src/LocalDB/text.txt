@@ -1,0 +1,37 @@
+ [
+   '{{repeat(15, 15)}}',
+   {
+     id: '{{index(1)}}',
+     user_id: '{{integer(1, 4)}}',
+     status: '{{bool()}}',
+    link : 'https://www.linkedin.com/jobs/',
+    postiion: '{{random("full stack developer", "Web Developer", "Enginneer")}}',
+    contact: '{{firstName()}} {{surname()}}',
+    company: '{{company().toUpperCase()}}',
+    email: '{{email()}}',
+    phone: '+1 {{phone()}}',
+    location: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    notes: '{{lorem(1, "paragraphs")}}',
+    registered: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    salary:'{{integer(60000, 100000}}'
+  }
+ ]
+
+[
+  '{{repeat(80)}}',
+  {
+    id: '{{index(1)}}',
+    application_id: '{{integer(1, 30)}}',
+    date: '{{date(new Date(2022, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    type : '{{random("applied", "hr", "techincal","offer")}}',
+    offer: '{{integer(60000, 100000}}',
+    offer_details:  '{{lorem(1, "paragraphs")}}',
+    method : '{{random("phone", "videoh   method : '{{random("phone", "video", "onsite")}}',ttps://json-generator.com/#generate", "onsite")}}',
+    rejected: '{{bool()}}',
+    refused: '{{bool()}}',
+    reason :  '{{random("culture", "techincal", "experience","not relevant","other")}}',
+     notes: '{{lorem(1, "paragraphs")}}',
+   }
+ ]
+
+

@@ -3,10 +3,12 @@ import { combineReducers } from 'redux'
 
 const initState = {
     accessToken : JSON.parse(localStorage.getItem('accessToken'))|| '',
+    profile: JSON.parse(localStorage.getItem('profile')),
     dashboard_display_style:'none',
     IsNewApp: true,
     stages:['Applied', 'HR', 'Technical','Offer'],
-    app_logs:[]
+    app_logs:[],
+    active_jobApps: JSON.parse(localStorage.getItem('activeJobs'))|| [],
 }
 
 const jobAppInfo={
@@ -44,7 +46,7 @@ const jobAppInfo={
 
 
 
- const setjobApp = ((state=jobAppInfo,action={})=>{
+ const setJobApp = ((state=jobAppInfo,action={})=>{
     switch (action.type) {
         case 'SET_USER_ID':
             return {...state ,user_id:action.payload}
@@ -145,7 +147,7 @@ const setInitState = ((state=initState,action={})=>{
 
 
 export const reducer =  combineReducers({
-    setjobApp,
+    setJobApp,
     setInitState,
   })
 

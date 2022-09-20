@@ -6,8 +6,11 @@ import { setContactFname,setContactLname,setContactPos,
         setContactEmail,setContactLinkedin,setContactPhone } from '../../Redux/Actions/InsertContact';
 
 export const Contact = (props) => {
-    const {application_id} = props;
+    const {IsNewApp,application} = props;
     const [contact_Pos, setContact_Pos] = useState('HR Recuter');
+
+    const newApplicaiton = props.application;
+    const thisAppLog = props.thisAppLog|| newApplicaiton;
 
     const handlePosition = (event) => {
         setContact_Pos(event.target.value);
@@ -31,7 +34,7 @@ export const Contact = (props) => {
                         sx={{width:'180px'}} 
                         label="First Name" 
                         defaultValue={
-                            application_id? '':null         
+                            IsNewApp?application.contact_fname :thisAppLog.contact_fname         
                         }/>
                     </div>
                     <div>
@@ -41,14 +44,14 @@ export const Contact = (props) => {
                         sx={{width:'180px'}}  
                         label="Last Name" 
                         defaultValue={
-                            application_id? '':null         
+                            IsNewApp? application.contact_lname:thisAppLog.contact_lname         
                         }/>
                     </div>    
                     <TextField
                     size='small'
                     select
                     label= 'Contact Position'
-                    value={contact_Pos}
+                    value={application.contact_pos}
                     onChange={handlePosition}
                     sx={{width:'200px'}}
                     >
@@ -66,7 +69,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="Email" 
                     defaultValue={
-                        application_id? '':null         
+                        IsNewApp? application.contact_email:thisAppLog.contact_email         
                     }/>
                 </div>
                 <div>   
@@ -76,7 +79,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="Phone Number" 
                     defaultValue={
-                        application_id? '':null         
+                        IsNewApp? application.contact_phone:thisAppLog.contact_phone         
                     }/>
                 </div>
                 <div>   
@@ -86,7 +89,7 @@ export const Contact = (props) => {
                     sx={{width:'350px'}} 
                     label="LinkedIn" 
                     defaultValue={
-                        application_id? '':null         
+                        IsNewApp? application.contact_linkedin:thisAppLog.contact_linkedin         
                     }/>
                 </div>
             </Stack>
@@ -95,7 +98,8 @@ export const Contact = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    application_id: state.setjobApp.application_id
+    IsNewApp: state.setInitState.IsNewApp,
+    application : state.setJobApp,
 })
 
 

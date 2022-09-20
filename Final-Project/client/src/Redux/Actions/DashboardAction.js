@@ -4,13 +4,13 @@ const SET_USER_ID = 'SET_USER_ID';
 const SET_APP_LOGS = 'SET_APP_LOGS';
 const IS_NEW_APP = 'IS_NEW_APP';
 const RESET_LOG = 'RESET_LOG';
+const SET_ACTIVE_JOB_APP = 'SET_ACTIVE_JOB_APP';
 
 export const  setDashboardStyle= (style)=>(dispatch)=>{
     dispatch({type:CHANGE_DASHBOARD_STYLE,payload:style});
 }
 
 export const  setUserId= (id)=>(dispatch)=>{
-    // console.log('shoval set app id', id);
     dispatch({type:SET_USER_ID,payload:id});
 }
 
@@ -29,3 +29,11 @@ export const  resetLogState= ()=>(dispatch)=>{
 export const  setIsNewApp= (isNewApp)=>(dispatch)=>{
     dispatch({type:IS_NEW_APP,payload:isNewApp});
 }
+
+
+export const  setActiveJobApp= (jobApps)=>(dispatch)=>{
+    dispatch({type:SET_ACTIVE_JOB_APP,payload:jobApps});
+}
+
+
+

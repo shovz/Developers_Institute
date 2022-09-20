@@ -9,10 +9,14 @@ import {setCompany,setSalary,setPost_url,
         setJobRejected,setJobRefused,setJobReason,setJobOffer,setOfferDetails }
         from '../../Redux/Actions/InsertJobInfo';
 
-
 export const JobInfo = (props) => {
-  const {application_id,application} = props;
-  const [method, setMethod] = useState('phone');
+  const {IsNewApp} = props;
+  let thisAppLog;
+  IsNewApp? thisAppLog= props.application:thisAppLog = props.appInfo;
+  
+  // console.log(thisAppLog);
+  
+  const [method, setMethod] = useState(' ');
   const [assignment, setAssignment] = useState(false);
   const [assCompleted, setAssCompleted] = useState(false);
   const [rejected, setRejected] = useState(false);
@@ -63,8 +67,9 @@ export const JobInfo = (props) => {
               size='small'  
               label="Company" 
               defaultValue={
-                application_id? '':null         
+               thisAppLog.company        
               }/>
+              
             </div>
             <div>
               <TextField 
@@ -72,30 +77,33 @@ export const JobInfo = (props) => {
               size='small' 
               label="Job title" 
               defaultValue={
-                application_id? '':null         
+                thisAppLog.position         
               }/>
             </div>   
 
             <TextField
-                onChange={(e)=>props.dispatch(setCreatedat(e.target.value))}
+                onChange={(e)=>{
+                  console.log(e.target.value)
+                  props.dispatch(setCreatedat(e.target.value)
+                )}}
                 label="Start Date"
                 size='small'
                 type="datetime-local"
-                defaultValue="2022-09-06T10:30"
+                defaultValue={thisAppLog.createdat}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
             {
-              !application.active?
+              !thisAppLog.active?
               (             
                 <TextField
                 onChange={(e)=>props.dispatch(setEndedat(e.target.value))}
                 label="End Date"
                 size='small'
                 type="datetime-local"
-                defaultValue="2022-09-06T10:30"
+                defaultValue={thisAppLog.endedat}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -112,7 +120,7 @@ export const JobInfo = (props) => {
               sx={{width:'300px'}} 
               label="Post URL" 
               defaultValue={
-                application_id? '':null         
+               thisAppLog.post_url         
               }/>
             </div>
             <div>
@@ -121,17 +129,18 @@ export const JobInfo = (props) => {
               size='small'  
               label="Company's Website" 
               defaultValue={
-                application_id? ``:null         
+                thisAppLog.website         
               }/>
             </div>    
             <TextField
                 size='small'
                 select 
                 label="Method of Communication"
-                value={method}
+                value={thisAppLog.method}
                 onChange={handleMethodChange}
                 sx={{width:'200px'}}
                 >
+                <MenuItem value={' '}>Website</MenuItem>
                 <MenuItem value={'phone'}>Phone</MenuItem>
                 <MenuItem value={'video'}>Video</MenuItem>
                 <MenuItem value={'onsite'}>Onsite</MenuItem>
@@ -147,7 +156,7 @@ export const JobInfo = (props) => {
               sx={{width:'350px'}} 
               label="Location" 
               defaultValue={
-                application_id? '':null         
+                thisAppLog.location            
               }/>
             </div>
             <div>
@@ -156,7 +165,7 @@ export const JobInfo = (props) => {
               size='small'  
               label="Salary" 
               defaultValue={
-                application_id? '':null         
+                thisAppLog.salary         
               }/>
             </div>   
 
@@ -166,7 +175,7 @@ export const JobInfo = (props) => {
                   size='small'
                   select
                   label="Assignment"
-                  value={assignment}
+                  value={thisAppLog.assignment}
                   onChange={handleAssignmentChange}
                   sx={{width:'150px'}}
                   >
@@ -182,7 +191,7 @@ export const JobInfo = (props) => {
                 label="Assignment Deadline"
                 size='small'
                 type="datetime-local"
-                defaultValue="2022-09-06T10:30"
+                defaultValue={thisAppLog.assignment_date}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -192,7 +201,7 @@ export const JobInfo = (props) => {
                 size='small'
                 select 
                 label="Assignment Completed"
-                value={assCompleted}
+                value={thisAppLog.completed_ass}
                 onChange={handleAssCompletedChange}
                 sx={{width:'200px'}}
                 >
@@ -208,7 +217,7 @@ export const JobInfo = (props) => {
                   size='small'
                   select
                   label="Rejected"
-                  value={rejected}
+                  value={thisAppLog.rejected}
                   onChange={handleRejectedChange}
                   sx={{width:'150px'}}
                   >
@@ -222,7 +231,7 @@ export const JobInfo = (props) => {
                 size='small'
                 select
                 label="Reason"
-                value={reason}
+                value={thisAppLog.reason}
                 onChange={handleReasonChange}
                 sx={{width:'200px'}}
                 >
@@ -238,7 +247,7 @@ export const JobInfo = (props) => {
                 size='small'
                 select 
                 label="Refused By User"
-                value={refused}
+                value={thisAppLog.refused}
                 onChange={handleRefusedChange}
                 sx={{width:'150px'}}
                 >
@@ -252,10 +261,10 @@ export const JobInfo = (props) => {
                   size='small' 
                   label="Job Description"
                   multiline
-                  rows={14}
+                  rows={8}
                   sx={{width:'450px',mt:6}}
                   defaultValue={
-                    application_id? '':null         
+                    thisAppLog.job_description         
                   }/>
             </div>    
       </div>
@@ -263,8 +272,8 @@ export const JobInfo = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  application_id: state.setjobApp.application_id,
-  application : state.setjobApp,
+  IsNewApp: state.setInitState.IsNewApp,
+  application : state.setJobApp,
   
 })
 

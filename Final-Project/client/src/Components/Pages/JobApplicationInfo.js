@@ -1,15 +1,16 @@
 import React from 'react'
-import { useState} from 'react';
+import { useState,useEffect} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux'
 import {Tabs ,Typography ,Tab, Stack,Button,Select,MenuItem,
         FormControlLabel,Switch ,Divider,IconButton   } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import {setDashboardStyle} from '../../Redux/Actions/DashboardAction';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import JobInfo from '../ApplicationCardInfo/JobInfo';
 import Contact from '../ApplicationCardInfo/Contact';
 import Notes from '../ApplicationCardInfo/Notes';
-import { setAppId } from '../../Redux/Actions/DashboardAction';
+import {setDashboardStyle} from '../../Redux/Actions/DashboardAction';
+import { setAppId ,setActiveJobApp} from '../../Redux/Actions/DashboardAction';
 import { setJobActive,setJobStage } from '../../Redux/Actions/InsertJobInfo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -23,8 +24,9 @@ export const JobApplicationInfo = (props) => {
   const {IsNewApp} = props;
   const [stage, setStage] = useState('Applied');
 
-
-
+  let length;
+  props.app_logs.length>0? length=props.app_logs.length-1:length=0;
+  const thisAppLog = props.app_logs[length] ||props.application;
 
 
   const saveJobInfo = async(event) => {
@@ -32,7 +34,7 @@ export const JobApplicationInfo = (props) => {
     console.log(' saveJobInfo props.application',application);
         try{
         const response = await axios.post('/saveJobInfo',{
-          application
+          application,IsNewApp
         },{
           withCredentials:true,
           headers:{
@@ -40,8 +42,35 @@ export const JobApplicationInfo = (props) => {
           }
         });
 
-        console.log('shoval saveJobInfo last application id=>', response.data);
-        props.dispatch(setAppId(response.data));
+        // console.log('shoval all active data=>', response.data);
+        localStorage.setItem('activeJobs',JSON.stringify(response.data))
+        props.dispatch(setActiveJobApp(response.data));
+        props.dispatch(setDashboardStyle('none'));
+        const lastinsetedApp = 0;
+        props.dispatch(setAppId(response.data[lastinsetedApp].application_id));
+      }
+    catch(e){
+        console.log(e);
+     }
+  };
+
+  const deleteJobApp = async(event) => {
+    const application_id = props.application_id;
+    console.log(' saveJobInfo props.application',application_id);
+        try{
+        const updatedTable = await axios.post('/deleteJobApp',{
+          application_id
+        },{
+          withCredentials:true,
+          headers:{
+            'Content-Type':'application/json'
+          }
+        });
+
+        props.dispatch(setDashboardStyle('none'));
+        props.dispatch(setActiveJobApp(updatedTable.data));
+        const lastinsetedApp = 0;
+        props.dispatch(setAppId(updatedTable.data[lastinsetedApp].application_id));
       }
     catch(e){
         console.log(e);
@@ -54,8 +83,6 @@ export const JobApplicationInfo = (props) => {
   };
 
   const handleStage= (event) => {
-    // let method_state;
-    // IsNewApp? method_state=event.target.value : method_state=clickedAppData.stage;
     setStage(event.target.value);
     props.dispatch(setJobStage(event.target.value))
   };
@@ -85,21 +112,21 @@ export const JobApplicationInfo = (props) => {
               <Stack  >
                   <Typography variant='h4'>
                   {
-                    // 
-                    IsNewApp? 'NEW APPLICATION FORM':null
+                    // props.app_logs[length].company
+                    IsNewApp? 'NEW APPLICATION FORM':thisAppLog.company
                   }
                 </Typography>
                 <Typography variant='h7'>
                   {
                     // 
-                    IsNewApp? 'NEW APPLICATION FORM':null
+                    IsNewApp? 'NEW APPLICATION FORM':thisAppLog.position
                   }
                 </Typography>
               </Stack>
               <div>
                 <Select
                       size='small'
-                      value={stage}
+                      value={IsNewApp?stage:thisAppLog.stage}
                       onChange={(event)=>handleStage(event)}
                       sx={{width:'200px'}}
                       >
@@ -112,15 +139,10 @@ export const JobApplicationInfo = (props) => {
           </Stack>
           <div style={{display:'flex',flexDirection:'column',
           justifyContent:'flex-start', alignItems:'flex-end',width:'30%'}}>
-              <IconButton onClick={(e)=> 
-                {
-                 
-                  props.dispatch(setDashboardStyle('none'))
-                  window.location.reload(true);
-                }
-                }>
+              <IconButton onClick={(e)=>props.dispatch(setDashboardStyle('none'))}>
                 <CloseIcon />
               </IconButton>
+              
               <div>
                   <FormControlLabel
                   label={label}
@@ -132,13 +154,26 @@ export const JobApplicationInfo = (props) => {
                     } 
                   /> 
               </div>
-              <Button 
-                onClick={()=>saveJobInfo()}
-                sx={{m:'10px'}} 
-                size='small'
-                variant='contained'>
-                  Save Changes
-              </Button>
+              <Stack direction={'row'}>
+                <Button 
+                  onClick={()=>saveJobInfo()}
+                  sx={{m:'10px'}} 
+                  size='small'
+                  variant='contained'>
+                    Save Changes
+                </Button>
+                {!IsNewApp?(
+                          <Button 
+                          onClick={()=>deleteJobApp()}
+                          sx={{m:'10px'}} 
+                          size='small'
+                          variant='contained'>
+                            delete job
+                        </Button>
+                ):null
+              }
+              </Stack>
+              
           </div>
         </div>
         <div>
@@ -161,11 +196,11 @@ export const JobApplicationInfo = (props) => {
         {
           tab==='JobInfo'? (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <JobInfo/>
+              <JobInfo appInfo={thisAppLog}/>
             </LocalizationProvider>
           ):
-          tab==='Contact'? (<Contact/>):
-          tab==='Notes'? (<Notes/>):null
+          tab==='Contact'? (<Contact appInfo={thisAppLog}/>):
+          tab==='Notes'? (<Notes appInfo={thisAppLog}/>):null
         }
         </div>
       </div>
@@ -183,23 +218,25 @@ export const JobApplicationInfo = (props) => {
         </div>
         <Stack spacing={2}>
           {
-            // console.log(props.app_logs)
-            // props.app_logs.map((app,i)=>{
-            //   // console.log(app)
-            //   return (
-            //     <Stack key={i} 
-            //     style={{
-            //     boxShadow:'1px 5px 10px 0.25px grey',
-            //     borderRadius:'10px',
-            //     display:'flex',padding:'5px',
-            //     alignItems:'center',
-            //     backgroundColor:'lightgoldenrodyellow',
-            //     cursor:'pointer'}}>
-            //       <Typography variant='h6'>{app.stage}</Typography>
-            //       <Typography variant='h7'>date of change :{app.createdat}</Typography>
-            //     </Stack>
-            //   )
-            // })
+            // console.log('job apllicaiton info app_logs',props.app_logs.length)
+            props.app_logs.length>0?(
+            props.app_logs.map((app,i)=>{
+              // console.log(app)
+              return (
+                <Stack 
+                key={i} 
+                  style={{
+                  boxShadow:'1px 5px 10px 0.25px grey',
+                  borderRadius:'10px',
+                  display:'flex',padding:'5px',
+                  alignItems:'center',
+                  backgroundColor:'lightgoldenrodyellow',
+                  cursor:'pointer'}}>
+                    <Typography variant='h6'>{app.stage}</Typography>
+                    <Typography variant='h7'>application_id:{app.createdat}</Typography>
+                </Stack>
+              )
+            })):null
           }
 
         </Stack>
@@ -214,9 +251,9 @@ const mapStateToProps=(state)=>{
   return {
     dashboard_display_style  : state.setInitState.dashboard_display_style,
     IsNewApp: state.setInitState.IsNewApp,
-    application : state.setjobApp,
-    application_id: state.setjobApp.application_id,
-    app_logs: state.setInitState.app_logs
+    application : state.setJobApp,
+    application_id: state.setJobApp.application_id,
+    app_logs: state.setInitState.app_logs,
   }
 }
 

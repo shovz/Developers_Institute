@@ -4,8 +4,9 @@ import {TextField} from '@mui/material';
 import { setNotes } from '../../Redux/Actions/InsertNotes';
 
 export const Notes = (props) => {
-  const {application_id} = props;
-
+  const {IsNewApp,application} = props;
+  const newApplicaiton = props.application;
+  const thisAppLog = props.thisAppLog|| newApplicaiton;
 
   return (
       <div style={{
@@ -18,14 +19,15 @@ export const Notes = (props) => {
             rows={14}
             sx={{width:'550px'}}
             defaultValue={
-              application_id? '':null         
+              IsNewApp? application.notes:thisAppLog.notes         
             }/> 
       </div>
   )
 }
 
 const mapStateToProps = (state) => ({
-  application_id: state.setjobApp.application_id
+  IsNewApp: state.setInitState.IsNewApp,
+  application : state.setJobApp,
 })
 
 const mapDispatchToProps = {}

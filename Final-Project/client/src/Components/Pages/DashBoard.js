@@ -1,12 +1,14 @@
-import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
+import {useEffect,useState,useRef} from 'react';
+import axios from 'axios';
+
 import {Container,Grid} from '@mui/material';
 import GridTabs from '../Elements/GridTabs';
 import JobApplicationInfo from './JobApplicationInfo';
 
 
-function DashBoard(props) {
-  
+const DashBoard = (props) =>{
+
   return (
     <div style={{position:'relative'}}>
     <Container maxWidth={'lg'} sx={{display:'flex',mt:4}}>
@@ -49,6 +51,8 @@ const mapStateToProps=(state)=>{
   return {
     dashboard_display_style  : state.setInitState.dashboard_display_style,
     stages : state.setInitState.stages,
+    active_jobApps: state.setInitState.active_jobApps,
+
   }
 }
 

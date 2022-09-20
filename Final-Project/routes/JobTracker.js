@@ -1,24 +1,20 @@
 import express from "express";
-import { getUsers ,signIn,register,signOut} from "../controllers/Users.js";
-import {getUserId,getApplied,getHr,getTechnical,getOffer,getApplicationLogs,saveJobInfo} from "../controllers/ApplicationInfo.js";
+import { getProfile ,signIn,register,signOut,delUser} from "../controllers/Users.js";
+import {getUserId,getApplicationLogs,sortedByStage
+  ,saveJobInfo,deleteJobApp} from "../controllers/ApplicationInfo.js";
 import { VerifyToken } from "../middleware/VerifyToken.js";
 const router = express.Router();
 
-
-router.get('/',getUsers);
+router.post('/delUser', delUser);
 router.post('/register', register);
 router.post('/signIn', signIn);
 router.delete('/signOut', signOut);
-
-
+router.post('/profile',getProfile);
+router.post('/deleteJobApp',deleteJobApp);
 router.get('/dashboard',getUserId);
 router.post('/getApplicationLogs',getApplicationLogs);
 router.post('/saveJobInfo',saveJobInfo);
-router.get('/Applied',getApplied);
-router.get('/Hr',getHr);
-router.get('/Technical',getTechnical);
-router.get('/Offer',getOffer);
-
+router.post('/sortedByStage',sortedByStage);
 
 
 router.get('/verify', VerifyToken, (req,res) =>{
