@@ -65,8 +65,16 @@ export const sortedByStage = async(req,res)=>{
 
 const getApplied= async (user_id)=>{
     try{
+<<<<<<< HEAD
         const applied = await getJobAppStageData(user_id,'Applied')
         return applied;
+=======
+        getJobAppStageData('Applied')
+        .then(application=>{
+            // console.log(application);
+            res.json(application)}
+            );
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     } catch(e){
         console.log(e);
     }
@@ -74,8 +82,15 @@ const getApplied= async (user_id)=>{
 
 const getHr= async (user_id)=>{
     try{
+<<<<<<< HEAD
         const hr = await getJobAppStageData(user_id,'HR')
         return hr;
+=======
+        getJobAppStageData('HR')
+        .then(application=>{
+            res.json(application)}
+            );
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     } catch(e){
         console.log(e);
     }
@@ -83,8 +98,15 @@ const getHr= async (user_id)=>{
 
 const getTechnical= async (user_id)=>{
     try{
+<<<<<<< HEAD
         const technical = await  getJobAppStageData(user_id,'Technical')
         return technical;
+=======
+        getJobAppStageData('Technical')
+        .then(application=>{
+            res.json(application)}
+            );
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     } catch(e){
         console.log(e);
     }
@@ -92,19 +114,33 @@ const getTechnical= async (user_id)=>{
 
 const getOffer= async (user_id)=>{
     try{
+<<<<<<< HEAD
         const offer = await  getJobAppStageData(user_id,'Offer')
         return offer
+=======
+        getJobAppStageData('Offer')
+        .then(application=>{
+            // console.log(application);
+            res.json(application)}
+            );
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     } catch(e){
         console.log(e);
     }
 };
+<<<<<<< HEAD
 const getJobAppStageData =(user_id,stage)=>{
+=======
+
+const getJobAppStageData =(stage)=>{
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     return (db.select('*')
     .from ('applications')
     .join('users','users.user_id','applications.user_id')
     .join('logs','logs.application_id','applications.application_id')
     .where('stage',stage))
     .andWhere('active_stage',true)
+<<<<<<< HEAD
     .andWhere('users.user_id',user_id)
 };
 
@@ -148,6 +184,33 @@ export const saveJobInfo = async (req,res)=>{
     
 };
 export const getAllActiveJobApp= async () =>{
+=======
+};
+
+
+
+export const saveJobInfo = async (req,res)=>{  
+    // console.log('shoval saveJobInfo application',req.body.application);
+    // console.log('shoval saveJobInfo IsNewApp',req.body.IsNewApp);
+    let application_id;
+    if(req.body.IsNewApp)
+    {
+        application_id = await insertToApplications(req.body.application);
+    }
+    else{
+        application_id = await UpdateApplication(req.body.application);
+        await updateInActiveStage(req.body.application);
+    }
+    await insertToLogs(req.body.application,application_id);
+    await insertContactInfo(req.body.application,application_id);
+    const activeJobApp = await getAllActiveJobApp()
+    // console.log('shoval allData', activeJobApp);
+    res.json(activeJobApp);
+    
+};
+
+const getAllActiveJobApp= async () =>{
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
     return (db.select('*')
     .from ('applications')
     .join('users','users.user_id','applications.user_id')
@@ -212,6 +275,10 @@ const UpdateApplication = async(application)=>{
         console.log(e);
     }
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> ecd023148f14312df0ee1657a60435f714ffab3a
 const insertToLogs = async(application,application_id)=>{
     // console.log("shoval insertlogs app id",application_id);
     try{

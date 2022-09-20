@@ -24,7 +24,7 @@ const jobAppInfo={
         location: '',
         createdat: new Date().toISOString().slice(0, 19).replace('T', ' '),
         endedat: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        method: '',
+        method: ' ',
         stage: 'Applied',
         log_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
         notes: '',
@@ -33,12 +33,13 @@ const jobAppInfo={
         completed_ass: false,
         rejected: false,
         refused: false,
-        reason: '',
+        reason: 'other',
         offer: '',
         offer_details: '',
+        active_stage: true,
         contact_fname: '',
         contact_lname: '',
-        contact_pos:'',
+        contact_pos:'Other',
         contact_email: '',
         contact_linkedin: '',
         contact_phone: ''
@@ -69,6 +70,7 @@ const jobAppInfo={
         case 'CHANGE_LOCATION':
             return {...state ,location:action.payload}
         case 'CHANGE_CREATED_DATE':    
+            // console.log(action.payload);
             return {...state ,createdat:action.payload}
         case 'CHANGE_ENDED_DATE':
             return {...state ,endedat:action.payload}
@@ -114,9 +116,10 @@ const jobAppInfo={
         case 'CHANGE_NOTES':    
           return {...state ,notes:action.payload}
 
+
+          
         case 'RESET':
-            console.log('action.payload',action.payload);
-          return {...jobAppInfo,application_id:action.payload}
+          return {...jobAppInfo,application_id:action.payload,user_id:state.user_id}
         default:
             return {...state}
     }
@@ -130,6 +133,8 @@ const setInitState = ((state=initState,action={})=>{
     switch (action.type) {
         case 'SET_ACCESS_TOKEN':
             return {...state ,accessToken:action.payload}
+        case 'SET_PROFILE':
+            return {...state,profile:action.payload}
         case 'CHANGE_DASHBOARD_STYLE':
             return {...state ,dashboard_display_style:action.payload}
         case 'IS_NEW_APP':
@@ -138,6 +143,9 @@ const setInitState = ((state=initState,action={})=>{
             return {...state ,app_logs:action.payload}
         case 'RESET_LOG':
             return {...state ,app_logs:[]}
+        case 'SET_ACTIVE_JOB_APP':
+            return {...state,active_jobApps:action.payload}
+
         default:
             return {...state}
     }

@@ -1,13 +1,14 @@
-DROP TABLE contact_info;
-DROP TABLE logs;
-DROP TABLE applications;
--- DROP TABLE users;
-
-
 -- CREATE TYPE methods AS ENUM ('phone', 'video', 'onsite','')
 -- CREATE TYPE stages AS ENUM ('applied', 'hr', 'techincal','offer')
 -- CREATE TYPE reasons AS ENUM ('culture', 'techincal', 'experience', 'not relevant', 'other','')
 -- CREATE TYPE pos AS ENUM ('HR Recuter', 'HR Manager', 'Personal Manager', 'Devition Manager', 'Other')
+
+
+
+DROP TABLE contact_info;
+DROP TABLE logs;
+DROP TABLE applications;
+-- DROP TABLE users;
 
 
 -- CREATE TABLE users (
@@ -51,7 +52,8 @@ CREATE TABLE logs (
     refused BOOLEAN DEFAULT false ,
     reason reasons,
     offer VARCHAR(100),
-    offer_details TEXT    
+    offer_details TEXT,
+    active_stage BOOLEAN
 );
 
 CREATE TABLE contact_info (

@@ -3,6 +3,11 @@ import {connect} from 'react-redux';
 import BarGraph from '../Graphs/BarGraph';
 import {Typography, Stack,Divider} from '@mui/material'; 
 
+const data = [
+  { argument: 1, value: 10 },
+  { argument: 2, value: 20 },
+  { argument: 3, value: 30 },
+];
 
 const Analytics = (props) => {
 
