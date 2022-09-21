@@ -1,13 +1,38 @@
 import {connect} from 'react-redux';
-import {useEffect,useState,useRef} from 'react';
+import {useEffect} from 'react';
 import axios from 'axios';
 
 import {Container,Grid} from '@mui/material';
 import GridTabs from '../Elements/GridTabs';
 import JobApplicationInfo from './JobApplicationInfo';
+import {setActiveJobApp} from '../../Redux/Actions/DashboardAction';
+import {setAppStageSorted} from '../../Redux/Actions/Analytics';
 
 
 const DashBoard = (props) =>{
+
+  useEffect (()=>{
+    const getAllActiveJobApp = async() => {
+      const {user_id} = props;
+      try{
+          const response = await axios.post('/getAllActiveJobApp',{
+            user_id
+          },{
+            withCredentials:true,
+            headers:{
+              'Content-Type':'application/json'
+            }
+          });
+        props.dispatch(setAppStageSorted(response.data.sorted_Job_Apps_by_stage));
+        localStorage.setItem('activeJobs',JSON.stringify(response.data.allActiveJobApp))
+        props.dispatch(setActiveJobApp(response.data.allActiveJobApp));
+        }
+      catch(e){
+          console.log(e);
+      }
+    };
+    getAllActiveJobApp();
+},[])
 
   return (
     <div style={{position:'relative'}}>
@@ -52,6 +77,9 @@ const mapStateToProps=(state)=>{
     dashboard_display_style  : state.setInitState.dashboard_display_style,
     stages : state.setInitState.stages,
     active_jobApps: state.setInitState.active_jobApps,
+    user_id: state.setJobApp.user_id,
+    application_id: state.setJobApp.application_id,
+
 
   }
 }

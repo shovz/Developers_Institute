@@ -38,7 +38,6 @@ export const GridTabs= (props) =>{
   }
  
 
-
   return (
         <Card id={id} sx={{textAlign:'center',height:'70px',pt:2,m:1,
         backgroundColor:getRandomColor(),cursor:'pointer'}} 

@@ -51,7 +51,7 @@ function UserSettings(props) {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar
               size={40}
-              name={props.profile.fname? props.profile.fname:null}
+              // name={props.profile.fname? props.profile.fname:null}
               square             
               variant="beam"
               colors={["#ffdc08", "#C4B232", "#0c8f8f", "#FFDC08", "#0c8f8f"]}

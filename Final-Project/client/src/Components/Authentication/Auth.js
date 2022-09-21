@@ -27,6 +27,7 @@ export const Auth = (props) =>{
       }
       verify();
     },[])
+    
     return (
       redirect ? props.children : null
     )

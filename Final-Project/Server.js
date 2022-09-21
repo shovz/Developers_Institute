@@ -21,9 +21,9 @@ app.listen(process.env.PORT||8080, ()=>{
 })
 
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 
-// app.use('/',express.static(path.join(__dirname,'cliend/build')));
-// app.get('*',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'./client/build','index.html'))
-// })
+app.use('/',express.static(path.join(__dirname,'client/build')));
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,'./client/build','index.html'))
+})

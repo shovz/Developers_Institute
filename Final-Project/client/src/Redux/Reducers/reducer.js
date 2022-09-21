@@ -11,6 +11,31 @@ const initState = {
     active_jobApps: JSON.parse(localStorage.getItem('activeJobs'))|| [],
 }
 
+const setInitState = ((state=initState,action={})=>{
+    // console.log('shoval setInitState');
+    switch (action.type) {
+        case 'SET_ACCESS_TOKEN':
+            return {...state ,accessToken:action.payload}
+        case 'SET_PROFILE':
+            return {...state,profile:action.payload}
+        case 'CHANGE_DASHBOARD_STYLE':
+            return {...state ,dashboard_display_style:action.payload}
+        case 'IS_NEW_APP':
+            return {...state ,IsNewApp:action.payload}
+        case 'SET_APP_LOGS':
+            return {...state ,app_logs:action.payload}
+        case 'RESET_LOG':
+            return {...state ,app_logs:[]}
+        case 'SET_ACTIVE_JOB_APP':
+            return {...state,active_jobApps:action.payload}
+
+        default:
+            return {...state}
+    }
+
+})
+
+
 const jobAppInfo={
         user_id: 1,
         application_id: 1,
@@ -44,11 +69,10 @@ const jobAppInfo={
         contact_linkedin: '',
         contact_phone: ''
 }
-
-
-
- const setJobApp = ((state=jobAppInfo,action={})=>{
-    switch (action.type) {
+    
+    
+const setJobApp = ((state=jobAppInfo,action={})=>{
+        switch (action.type) {
         case 'SET_USER_ID':
             return {...state ,user_id:action.payload}
         case 'SET_APP_ID':
@@ -127,24 +151,26 @@ const jobAppInfo={
 })
 
 
+const analytics = {
+    sorted_Job_Apps_by_stage:[],
+    applied:[],
+    hr:[],
+    tech:[],
+    offer:[],
+}
 
-const setInitState = ((state=initState,action={})=>{
-    // console.log('shoval setInitState');
+const setAnalytics= ((state=analytics,action={})=>{
     switch (action.type) {
-        case 'SET_ACCESS_TOKEN':
-            return {...state ,accessToken:action.payload}
-        case 'SET_PROFILE':
-            return {...state,profile:action.payload}
-        case 'CHANGE_DASHBOARD_STYLE':
-            return {...state ,dashboard_display_style:action.payload}
-        case 'IS_NEW_APP':
-            return {...state ,IsNewApp:action.payload}
-        case 'SET_APP_LOGS':
-            return {...state ,app_logs:action.payload}
-        case 'RESET_LOG':
-            return {...state ,app_logs:[]}
-        case 'SET_ACTIVE_JOB_APP':
-            return {...state,active_jobApps:action.payload}
+        case 'SET_APP_STAGE_SORTED':
+            return {...state ,sorted_Job_Apps_by_stage:action.payload}
+        case 'SET_APPLIED':
+            return {...state ,applied:action.payload}
+        case 'SET_HR':
+            return {...state,hr:action.payload}
+        case 'SET_TECHNICAL':
+            return {...state ,tech:action.payload}
+        case 'SET_OFFER':
+            return {...state ,offer:action.payload}
 
         default:
             return {...state}
@@ -153,9 +179,9 @@ const setInitState = ((state=initState,action={})=>{
 })
 
 
-
 export const reducer =  combineReducers({
     setJobApp,
     setInitState,
-  })
+    setAnalytics,
+})
 

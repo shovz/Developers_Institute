@@ -1,11 +1,10 @@
 import React from 'react'
-import { useState,useEffect} from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux'
 import {Tabs ,Typography ,Tab, Stack,Button,Select,MenuItem,
         FormControlLabel,Switch ,Divider,IconButton   } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import JobInfo from '../ApplicationCardInfo/JobInfo';
 import Contact from '../ApplicationCardInfo/Contact';
 import Notes from '../ApplicationCardInfo/Notes';
@@ -14,6 +13,7 @@ import { setAppId ,setActiveJobApp} from '../../Redux/Actions/DashboardAction';
 import { setJobActive,setJobStage } from '../../Redux/Actions/InsertJobInfo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {setAppStageSorted} from '../../Redux/Actions/Analytics';
 
 
 export const JobApplicationInfo = (props) => {
@@ -30,11 +30,11 @@ export const JobApplicationInfo = (props) => {
 
 
   const saveJobInfo = async(event) => {
-    const application = props.application;
+    const {application,user_id} = props;
     console.log(' saveJobInfo props.application',application);
         try{
         const response = await axios.post('/saveJobInfo',{
-          application,IsNewApp
+          application,IsNewApp,user_id
         },{
           withCredentials:true,
           headers:{
@@ -43,11 +43,12 @@ export const JobApplicationInfo = (props) => {
         });
 
         // console.log('shoval all active data=>', response.data);
-        localStorage.setItem('activeJobs',JSON.stringify(response.data))
-        props.dispatch(setActiveJobApp(response.data));
+        localStorage.setItem('activeJobs',JSON.stringify(response.data.allActiveJobApp))
+        props.dispatch(setActiveJobApp(response.data.allActiveJobApp));
+        props.dispatch(setAppStageSorted(response.data.sorted_Apps_By_Stage));
         props.dispatch(setDashboardStyle('none'));
-        const lastinsetedApp = 0;
-        props.dispatch(setAppId(response.data[lastinsetedApp].application_id));
+        const lastinsetedApp = 0; // get sorted in server *DEC
+        props.dispatch(setAppId(response.data.allActiveJobApp[lastinsetedApp].application_id));
       }
     catch(e){
         console.log(e);
@@ -254,6 +255,8 @@ const mapStateToProps=(state)=>{
     application : state.setJobApp,
     application_id: state.setJobApp.application_id,
     app_logs: state.setInitState.app_logs,
+    user_id: state.setJobApp.user_id,
+
   }
 }
 

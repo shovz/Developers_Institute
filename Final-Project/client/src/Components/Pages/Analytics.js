@@ -1,25 +1,17 @@
 import React from 'react';
+
 import {connect} from 'react-redux';
-import BarGraph from '../Graphs/BarGraph';
+import JobAppPerStage from '../Graphs/JobAppPerStage';
 import {Typography, Stack,Divider} from '@mui/material'; 
 
-const data = [
-  { argument: 1, value: 10 },
-  { argument: 2, value: 20 },
-  { argument: 3, value: 30 },
-];
-
-const Analytics = (props) => {
 
 
-
-
-  
+const Analytics = (props) => {  
   return (
-      <div style={{width:'1000px',height:'600px',display:'flex',border:'1px solid grey',
-      margin:'30px auto'}}>
-        <Stack spacing={2} sx={{width:'20%',height:'100%',borderRight:'1px solid grey',mx:3,pt:2}}>
-          <Typography>graph 1</Typography>
+      <div style={{width:'1000px',height:'600px',display:'flex',
+      boxShadow:'1px 1px 4px grey',margin:'30px auto'}}>
+        <Stack spacing={2} sx={{width:'20%',backgroundColor:'lightblue',mr:3,p:2}}>
+          <Typography>Job App Per Stage</Typography>
           <Typography>graph 2</Typography>
           <Typography>graph 3</Typography> 
           <Typography>graph 4</Typography>
@@ -27,7 +19,7 @@ const Analytics = (props) => {
         </Stack>
         <div style={{width:'80%',height:'100%'}}>
           <div style={{width:'100%',height:'60%'}}>
-              <BarGraph/>
+              <JobAppPerStage/>
           </div>
           <Divider/>
 
