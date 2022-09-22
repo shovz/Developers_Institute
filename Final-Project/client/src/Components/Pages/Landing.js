@@ -1,7 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import {Container,Typography,Card,Grid ,CardMedia,Button} from '@mui/material'
-import './landing.css'
+import React from 'react';
+import { connect } from 'react-redux';
+import {Container,Typography,Card,Grid ,CardMedia,Button} from '@mui/material';
+import './landing.css';
+
 export const Landing = (props) => {  
   return (
     <div>
@@ -68,7 +69,21 @@ export const Landing = (props) => {
         alignItems:'center',
         pt:2}}>
            <Typography variant='h2' >About Me</Typography>
-            <Container sx={{m:5,display:'flex',justifyContent:'space-between'}}>
+           <Typography variant='p' sx={{width:'900px',margin:'0 auto'}}>
+            Hi my name is Shoval Zvulun I'm a 31 years old from Ramat Gan,Israel.
+            I am a full stack developer experienced in JavaScript-based programming with a background in React,
+            Node.JS, PostgreSQL, Redux, Express.js, and MUI.
+
+            I also have a B.S. in mechanical engineering with a demonstrated history of working in the Mechanical Engineering industry.
+
+            Possess strong skills in problem solving and a strong team player.
+            Strong Skills in Computer-Aided Design (CAD), SolidWorks, Blender, and C programming.
+            Basic Knowledge of Photoshop, Lightroom, and Video editing.
+
+            Looking for a job that will intrigue me and will make me think hard 
+
+          </Typography>
+           {/* <Container sx={{m:5,display:'flex',justifyContent:'space-between'}}>
               <div  style={{ maxWidth: 180}}>
                   <CardMedia
                   component="img"
@@ -123,7 +138,7 @@ export const Landing = (props) => {
                   alt="green iguana"
                   />
               </Card>
-            </Container>
+            </Container> */}
         </Card>
 
 
@@ -135,7 +150,7 @@ export const Landing = (props) => {
         alignItems:'center',
         pt:2}}>
                 <Typography variant='h2'>Contact Me</Typography>
-                <Card sx={{backgroundColor:'lightblue',textAlign:'center'}}>
+                <div style={{backgroundColor:'lightblue',textAlign:'center'}}>
                   <Grid container direction={'row'} p={10} spacing={6} justifyContent={'center'} alignItems={'center'}>
                     <Grid item xs={6}><Typography variant='h5'>shovz12@gmail.com</Typography></Grid>
                     <Grid item xs={6}>
@@ -147,7 +162,7 @@ export const Landing = (props) => {
                     <Grid item xs={6}><Typography variant='h5'>+972-54-690-4003</Typography></Grid>
 
                   </Grid>
-                </Card>
+                </div>
         </Card>
     </div>
   )

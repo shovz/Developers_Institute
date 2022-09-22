@@ -1,16 +1,15 @@
-import {useEffect,useState} from 'react';
+import {useEffect,} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import {AppBar,Toolbar,Typography,Container,Button,Stack} from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
 import UserSettings from './UserSettings'
 import {setAccessToken } from '../../Redux/Actions/LoginRegisterAction';
 import { setUserId } from '../../Redux/Actions/DashboardAction';
 import {setprofile} from '../../Redux/Actions/Profile'
-
+import LOGO from '../../Pic/LOGO.png'
 
 const NavBar = (props) => {
  
@@ -62,25 +61,9 @@ const NavBar = (props) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            component={Link}
-            to="/"
-            variant="h6"
-            noWrap
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
+          <Link to={'/'}>
+            <img style={{width:'100px',maxheight:'40px',margin:'0 20px'}} src={LOGO} alt='logo'/>
+          </Link>
 
           <Stack direction="row"  spacing={2} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button color="secondary" variant="contained"  component={Link} to={'/'}>Home</Button>
