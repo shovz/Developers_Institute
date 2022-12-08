@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState} from 'react';
+import { useState,useEffect} from 'react';
 import { connect } from 'react-redux';
 import {TextField,Stack,MenuItem} from '@mui/material';
 import {setCompany,setSalary,setPost_url,
@@ -11,10 +11,7 @@ import {setCompany,setSalary,setPost_url,
 
 export const JobInfo = (props) => {
   const {IsNewApp} = props;
-  let thisAppLog;
-  IsNewApp? thisAppLog= props.application:thisAppLog = props.appInfo;
-  
-  // console.log(thisAppLog);
+  let thisAppLog = IsNewApp ? props.application : props.appInfo;
   
   const [method, setMethod] = useState(' ');
   const [assignment, setAssignment] = useState(false);
@@ -23,7 +20,23 @@ export const JobInfo = (props) => {
   const [reason, setReason] = useState('culture');
   const [refused, setRefused] = useState(false);
   
+  // const initJobInfo = ()=>{
+    
+
+  // }
+
+  // useEffect(() => {
+  //   initJobInfo();
+  
+  // }, [])
+  
+
+
+
+
+
   const handleMethodChange = (event) => {
+    console.log('shoval method');
     setMethod(event.target.value);
     props.dispatch(setJobMethod(method))
     };
@@ -66,7 +79,7 @@ export const JobInfo = (props) => {
               onChange={(e)=>props.dispatch(setCompany(e.target.value))}
               size='small'  
               label="Company" 
-              defaultValue={
+              value={
                thisAppLog.company        
               }/>
               
@@ -76,7 +89,7 @@ export const JobInfo = (props) => {
               onChange={(e)=>props.dispatch(setPosition(e.target.value))}
               size='small' 
               label="Job title" 
-              defaultValue={
+              value={
                 thisAppLog.position         
               }/>
             </div>   
@@ -89,7 +102,7 @@ export const JobInfo = (props) => {
                 label="Start Date"
                 size='small'
                 type="datetime-local"
-                defaultValue={thisAppLog.createdat}
+                value={thisAppLog.createdat}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -103,7 +116,7 @@ export const JobInfo = (props) => {
                 label="End Date"
                 size='small'
                 type="datetime-local"
-                defaultValue={thisAppLog.endedat}
+                value={thisAppLog.endedat}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -119,7 +132,7 @@ export const JobInfo = (props) => {
               size='small' 
               sx={{width:'300px'}} 
               label="Post URL" 
-              defaultValue={
+              value={
                thisAppLog.post_url         
               }/>
             </div>
@@ -128,7 +141,7 @@ export const JobInfo = (props) => {
               onChange={(e)=>props.dispatch(setWebsite(e.target.value))}
               size='small'  
               label="Company's Website" 
-              defaultValue={
+              value={
                 thisAppLog.website         
               }/>
             </div>    
@@ -155,7 +168,7 @@ export const JobInfo = (props) => {
               size='small' 
               sx={{width:'350px'}} 
               label="Location" 
-              defaultValue={
+              value={
                 thisAppLog.location            
               }/>
             </div>
@@ -164,7 +177,7 @@ export const JobInfo = (props) => {
               onChange={(e)=>props.dispatch(setSalary(e.target.value))}
               size='small'  
               label="Salary" 
-              defaultValue={
+              value={
                 thisAppLog.salary         
               }/>
             </div>   
@@ -191,7 +204,7 @@ export const JobInfo = (props) => {
                 label="Assignment Deadline"
                 size='small'
                 type="datetime-local"
-                defaultValue={thisAppLog.assignment_date}
+                value={thisAppLog.assignment_date}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -263,7 +276,7 @@ export const JobInfo = (props) => {
                   multiline
                   rows={8}
                   sx={{width:'450px',mt:6}}
-                  defaultValue={
+                  value={
                     thisAppLog.job_description         
                   }/>
             </div>    

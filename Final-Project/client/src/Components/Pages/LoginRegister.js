@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Box,TextField,Button,Radio,RadioGroup,Select,MenuItem, 
+import {Box,TextField,Button,Radio,RadioGroup,MenuItem, 
         FormControlLabel,FormLabel, Typography} from '@mui/material';
-import FormContainer from '../Elements/FormContainer';
+import FormContainer from '../Elements/Styled/FormContainer';
 import {connect} from 'react-redux';
 import { setAccessToken} from '../../Redux/Actions/LoginRegisterAction';
 
@@ -15,16 +15,17 @@ const LoginRegister = (props) => {
   const [lname,setLname] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-  const [gender,setGender] = useState('male');
+  const [gender,setGender] = useState('female');
   const [msg,setMsg]=useState('');
   const [xp_years,setXp_years] = useState('0-2');
+  const [my_position,setMy_position] = useState('Fullstack Developer');
 
   const handleForm = async () => {
 
     if(title==='Register'){
         try {
           const response = await axios.post(`/register`,{
-            fname,lname,email,password,xp_years,gender
+            fname,lname,email,password,my_position,xp_years,gender
           },{
             withCredentials:true,
             headers:{
@@ -124,10 +125,28 @@ const LoginRegister = (props) => {
                       <FormControlLabel value="other" control={<Radio />} label="Other" />
                     </RadioGroup>
                   </Box>
-                  <Box  sx={{m:2}}>
+                  <Box  sx={{m:2,display:'flex',alignItems:'center'}} >
+                    <FormLabel sx={{mr:1}} id="Xp-years">Position :</FormLabel>
+                    <TextField
+                      select
+                      value={my_position}
+                      label="Position"
+                      onChange={(e)=>setMy_position(e.target.value)}
+                    >
+                      <MenuItem value={'Fullstack Developer'}>Fullstack Developer</MenuItem>
+                      <MenuItem value={'Mechanical Engineer'}>Mechanical Engineer</MenuItem>
+                      <MenuItem value={'System Integration Engineer'}>System Integration Engineer</MenuItem>
+                      <MenuItem value={'Application Engineer'}>Application Engineer</MenuItem>
+                      <MenuItem value={'QA Engineer'}>QA Engineer</MenuItem>
+                      <MenuItem value={'Product Manager '}>Product Manager</MenuItem>
+                      <MenuItem value={'Data Scientist'}>Data Scientist</MenuItem>
+                      <MenuItem value={'Other'}>Other</MenuItem>
+                  </TextField>
+                  </Box>
+                  <Box  sx={{m:2,display:'flex',alignItems:'center'}}>
                     <FormLabel sx={{mr:1}} id="Xp-years">Experience :</FormLabel>
-                    <Select
-                      id="demo-simple-select"
+                    <TextField
+                      select
                       value={xp_years}
                       label="Experience"
                       onChange={(e)=>setXp_years(e.target.value)}
@@ -136,7 +155,7 @@ const LoginRegister = (props) => {
                       <MenuItem value={'2-5'}>2-5 Years</MenuItem>
                       <MenuItem value={'5-10'}>5-10 Years</MenuItem>
                       <MenuItem value={'10+'}>10+ Years</MenuItem>
-                  </Select>
+                  </TextField>
                   </Box>
                 </>
                 ):null}

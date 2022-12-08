@@ -23,7 +23,6 @@ export const  setOffer = (appsData)=>(dispatch)=>{
 
 export const  setAppStageSorted = (appsData)=>(dispatch)=>{
     const appsData_Array = Object.entries(appsData)
-    console.log('aasas',appsData_Array);
     dispatch({type:SET_APP_STAGE_SORTED,payload:appsData_Array});
 }
 

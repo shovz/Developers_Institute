@@ -8,7 +8,7 @@ import {Typography, Stack,Divider} from '@mui/material';
 
 const Analytics = (props) => {  
   return (
-      <div style={{width:'1000px',height:'600px',display:'flex',
+      <div style={{width:'1000px',display:'flex',
       boxShadow:'1px 1px 4px grey',margin:'30px auto'}}>
         <Stack spacing={2} sx={{width:'20%',backgroundColor:'lightblue',mr:3,p:2}}>
           <Typography>Job App Per Stage</Typography>
@@ -27,7 +27,10 @@ const Analytics = (props) => {
               {
                 props.active_jobApps.map(jobapp=>{
                   return(
-                    <Typography>{jobapp.stage}</Typography>
+                    <Stack direction={'row'} spacing={5}>
+                      <Typography>company : {jobapp.company}</Typography>
+                      <Typography>position : {jobapp.position}</Typography>
+                    </Stack>
                   )
                 })
               }

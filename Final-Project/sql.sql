@@ -1,31 +1,30 @@
--- CREATE TYPE methods AS ENUM ('phone', 'video', 'onsite','')
--- CREATE TYPE stages AS ENUM ('applied', 'hr', 'techincal','offer')
--- CREATE TYPE reasons AS ENUM ('culture', 'techincal', 'experience', 'not relevant', 'other','')
--- CREATE TYPE pos AS ENUM ('HR Recuter', 'HR Manager', 'Personal Manager', 'Devition Manager', 'Other')
+-- CREATE TYPE methods AS ENUM ('phone', 'video', 'onsite',' ');
+-- CREATE TYPE stages AS ENUM ('Applied', 'HR', 'Technical','Offer');
+-- CREATE TYPE reasons AS ENUM ('culture', 'techincal', 'experience', 'not relevant', 'other',' ');
+-- CREATE TYPE pos AS ENUM ('HR Recuter', 'HR Manager', 'Personal Manager', 'Devition Manager', 'Other');
 
 
 
-DROP TABLE contact_info;
-DROP TABLE logs;
-DROP TABLE applications;
+-- DROP TABLE contact_info;
+-- DROP TABLE logs;
+-- DROP TABLE applications;
 -- DROP TABLE users;
 
 
--- CREATE TABLE users (
---     user_id SERIAL PRIMARY KEY,
---     fname VARCHAR(100) NOT NULL ,
---     lname VARCHAR(100) NOT NULL ,
---     email VARCHAR(100) NOT NULL UNIQUE ,
---     password VARCHAR(500) NOT NULL,
---     gender VARCHAR(100),
---     my_position VARCHAR(150),
---     xp_years VARCHAR(50) NOT NULL
--- );
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    fname VARCHAR(100) NOT NULL ,
+    lname VARCHAR(100) NOT NULL ,
+    email VARCHAR(100) NOT NULL UNIQUE ,
+    password VARCHAR(500) NOT NULL,
+    gender VARCHAR(100),
+    my_position VARCHAR(150),
+    xp_years VARCHAR(50) NOT NULL
+);
 		     
 CREATE TABLE applications (
     application_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
---     current_stage INTEGER NOT NULL UNIQUE,
     company VARCHAR(100) NOT NULL ,
     active BOOLEAN NOT NULL,
     salary VARCHAR(100),

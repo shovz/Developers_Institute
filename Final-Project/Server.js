@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import router from './routes/JobTracker.js';
 import path from 'path';
+//
 
 
 dotenv.config();

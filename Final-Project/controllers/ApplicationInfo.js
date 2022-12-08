@@ -195,6 +195,7 @@ const insertContactInfo = async(application,application_id)=>{
 
 
 export const getAllActiveJobApp= async  (req,res) =>{
+    // console.log('shoval req.body', req.body);
     const activeJobApp = {
         allActiveJobApp : await sortedDECAppID(req.body.user_id),
         sorted_Job_Apps_by_stage: await sortedByStage(req.body.user_id),
@@ -221,7 +222,7 @@ const sortedByStage = async(user_id)=>{
         Technical :await getTechnical(user_id),
         Offer: await getOffer(user_id)
     }
-
+    // console.log('shoval sorted_Job_Apps_by_stage', sorted_Job_Apps_by_stage);
     return sorted_Job_Apps_by_stage
 }
 const getApplied= async (user_id)=>{
@@ -269,14 +270,12 @@ const getJobAppStageData =(user_id,stage)=>{
 
 export const deleteJobApp = async (req,res)=>{  
     const {application_id} = req.body;
-    console.log('shoval sever del user user id',application_id);
+    console.log('shoval sever application_id',application_id);
     try{
-        const response = await 
-        db.from('applications').where('application_id',application_id).del()
-        const updatedTable_data =  await getAllActiveJobApp();
-        res.json(updatedTable_data)
+        const response = await  db.from('applications').where('application_id',application_id).del()
+        await getAllActiveJobApp(req,res);
     } catch(e){
-        console.log(e);
+        console.log('this prob',e);
     }
     
 };

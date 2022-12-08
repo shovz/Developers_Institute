@@ -35,7 +35,7 @@ const Profile = (props) => {
      }
   };
   return (
-    <div style={{display:'flex',width:'800px',margin:'40px auto',padding:'40px 0',boxShadow:'1px 1px 4px grey'}}>
+    <div style={{display:'flex',width:'850px',margin:'40px auto',padding:'40px 0',boxShadow:'1px 1px 4px grey'}}>
       <div style={{width:'30%',display:'flex',flexDirection:'column',
             alignItems:'center'}}>
         <Avatar
@@ -47,7 +47,7 @@ const Profile = (props) => {
               />
         {/* <Button>CHange colors</Button> */}
       </div>
-      <Stack  spacing={2} sx={{width:'40%',mx:2}}>
+      <Stack  spacing={2} sx={{width:'50%',mx:2}}>
           <Stack alignItems='center' spacing={2}  direction={'row'}>
             <Typography variant='h5'>First Name : </Typography>
             <Typography variant='h5'>{profile.fname}</Typography>

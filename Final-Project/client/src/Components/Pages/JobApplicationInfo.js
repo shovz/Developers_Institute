@@ -24,14 +24,13 @@ export const JobApplicationInfo = (props) => {
   const {IsNewApp} = props;
   const [stage, setStage] = useState('Applied');
 
-  let length;
-  props.app_logs.length>0? length=props.app_logs.length-1:length=0;
-  const thisAppLog = props.app_logs[length] ||props.application;
-
+  let length =  props.app_logs.length>0? props.app_logs.length-1: 0;
+  const thisAppLog = props.app_logs[length] || props.application;
+  // console.log(thisAppLog);
 
   const saveJobInfo = async(event) => {
     const {application,user_id} = props;
-    console.log(' saveJobInfo props.application',application);
+    console.log('saveJobInfo props.application',application);
         try{
         const response = await axios.post('/saveJobInfo',{
           application,IsNewApp,user_id
@@ -56,11 +55,11 @@ export const JobApplicationInfo = (props) => {
   };
 
   const deleteJobApp = async(event) => {
-    const application_id = props.application_id;
-    console.log(' saveJobInfo props.application',application_id);
+    const {application_id,user_id}= props;
+    // console.log(' saveJobInfo props.application',application_id);
         try{
         const updatedTable = await axios.post('/deleteJobApp',{
-          application_id
+          application_id,user_id
         },{
           withCredentials:true,
           headers:{
@@ -69,7 +68,7 @@ export const JobApplicationInfo = (props) => {
         });
 
         props.dispatch(setDashboardStyle('none'));
-        props.dispatch(setActiveJobApp(updatedTable.data));
+        props.dispatch(setActiveJobApp(updatedTable.data.allActiveJobApp));
         const lastinsetedApp = 0;
         props.dispatch(setAppId(updatedTable.data[lastinsetedApp].application_id));
       }

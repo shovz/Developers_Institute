@@ -1,157 +1,105 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Container,Typography,Card,Grid ,CardMedia,Button} from '@mui/material';
-import './landing.css';
+import { Stack } from '@mui/system';
+import shoval from '../../Pic/shoval.jpg'
+import LandingCardSection from '../Elements/Styled/LandingCardSection';
+import LandingBackImg from '../Elements/Styled/LandingBackImg';
+
+
 
 export const Landing = (props) => {  
   return (
-    <div>
-        <Grid container className='main'>
-            <Grid item sx={{mt:10,mx:5}} xs={3}  >
-              <Container sx={{maxWidth:'150px'}}>
-                <Typography variant='h3'>MY JOB TRACKER</Typography>
-                <Typography  variant='p'>
-                Track and analyze your job applications all in one place.
-                  </Typography>
+    <div style={{maxWidth:'1000px',margin:'0 auto'}}>
+        <LandingBackImg >
+          <div style={{width:'30%',height:'80%',display:'flex',justifyContent:'flex-start',alignItems:'center',margin:'0 12%'}}>
+            <Container>
+              <Typography variant='h3'>MY JOB TRACKER</Typography>
+              <Typography variant='p'>
+                  Track and analyze your job applications all in one place.
+              </Typography>
 
-                  <div>
-                    {!props.accessToken?
-                    (
-                          <Button sx={{my:2}} variant='contained' href='/register'>Lets Get started</Button>
-                    ):
-                    (
-                      <Button sx={{my:2}} variant='contained' href='/dashBoard'>My Applications</Button>
-                    )
-                  }
-                  
-                  </div>
-
-              </Container>
-            </Grid>
-        </Grid>
-
-
-        <Card 
-        sx={{display:'flex',
-        backgroundColor:'lightblue',
-        flexDirection:'column',
-        alignItems:'center',
-        pt:2}}>
-                <Typography variant='h2'>About this Project</Typography>
-                <div sx={{backgroundColor:'lightblue'}}>
-                  <Grid container direction={'row'} pt={3} pb={10} spacing={2} justifyContent={'center'} alignItems={'center'}>
-                    <Grid item xs={6}>
-                      <Typography variant='p'>
-                      Growing up I learned that anything not written down will be forgotten,
-                      with that said, the job search process can be long and tedious.
-                      You need to remember which position you submitted your resume for,
-                      which company you are in contact with, at what stage of the process you are in,
-                      the dates of submitting the assignment, etc.
-
-                      I wanted to create a project that would help me and others keep
-                      track of all these jobs applications and also enable analyzing them,
-                      through where I submitted my resume and from where I got the most returns,
-                      field of work, employment conditions, etc.
-                      </Typography>
-                    </Grid>
-                    {/* <Grid item xs={3}><Typography variant='h5'>Landing</Typography></Grid> */}
-                  </Grid>
+                <div>
+                  {!props.accessToken?
+                  (
+                    <Button sx={{my:2}} variant='contained' href='/register'>Lets Get started</Button>
+                  ):
+                  (
+                    <Button sx={{my:2}} variant='contained' href='/dashBoard'>My Applications</Button>
+                  )
+                }
+                
                 </div>
-        </Card>
+            </Container>
+          </div>
+        </LandingBackImg>
+
+
+        <LandingCardSection>
+            <Typography variant='h2'>About this Project</Typography>
+            <div sx={{backgroundColor:'lightblue'}}>
+              <Grid container  pt={3} pb={10} spacing={2} justifyContent={'center'} alignItems={'center'}>
+                <Grid item xs={6}>
+                  <Stack spacing={3}>
+                    <Typography variant='p'>
+                    Growing up I've learned that anything not written down will be forgotten,
+                    with that said, the job search process can be long and tedious.
+                    You need to remember which position you submitted your resume for,
+                    which company you are in contact with, at what stage of the process you are in,
+                    the dates of submitting the assignment, etc.
+                    </Typography>
+                    <Typography variant='p'>
+                    I wanted to create a project that would help me and others keep
+                    track of all these jobs applications and also enable analyzing them,
+                    through where I submitted my resume and from where I got the most returns,
+                    field of work, employment conditions, etc.
+                    </Typography>
+                  </Stack>
+                </Grid>
+              </Grid>
+            </div>
+        </LandingCardSection>
 
 
 
 
-        <Card 
-        sx={{display:'flex',
-        backgroundColor:'lightcyan',
-        flexDirection:'column',
-        alignItems:'center',
-        pt:2}}>
+        <LandingCardSection style={{backgroundColor:'lightcyan'}} >
            <Typography variant='h2' >About Me</Typography>
-           <Typography variant='p' sx={{width:'900px',margin:'0 auto'}}>
-            Hi my name is Shoval Zvulun I'm a 31 years old from Ramat Gan,Israel.
-            I am a full stack developer experienced in JavaScript-based programming with a background in React,
-            Node.JS, PostgreSQL, Redux, Express.js, and MUI.
+          <Stack direction={'row'} sx={{my:3}} spacing={2}>
+            <Stack spacing={3} sx={{maxWidth:'600px',margin:'0 auto'}}>
+                <Typography variant='p'>
+                  Hi my name is <span style={{fontWeight:'bold'}}> Shoval Zvulun </span>I'm a 31 years old from Ramat Gan,Israel.<br/>
+                  I am a full stack developer experienced in JavaScript-based programming with a background in React,
+                  Node.JS, PostgreSQL, Redux, Express.js, and MUI.
 
-            I also have a B.S. in mechanical engineering with a demonstrated history of working in the Mechanical Engineering industry.
-
-            Possess strong skills in problem solving and a strong team player.
-            Strong Skills in Computer-Aided Design (CAD), SolidWorks, Blender, and C programming.
-            Basic Knowledge of Photoshop, Lightroom, and Video editing.
-
-            Looking for a job that will intrigue me and will make me think hard 
-
-          </Typography>
-           {/* <Container sx={{m:5,display:'flex',justifyContent:'space-between'}}>
-              <div  style={{ maxWidth: 180}}>
-                  <CardMedia
+                  I also have a B.S. in mechanical engineering with a demonstrated history of working in the industry.
+                </Typography>
+                <Typography variant='p'>
+                  I possess strong skills in problem solving and I am an excellent team player.
+                  I have expericne in Computer-Aided Design (CAD), SolidWorks, Blender, and C programming.
+                  Basic Knowledge of Photoshop, Lightroom, and Video editing.
+                </Typography>
+                <Typography variant='h6'>
+                  Looking for a job that will intrigue me and will make me think hard.
+                
+                </Typography>
+              
+              </Stack>
+              <CardMedia
                   component="img"
                   height="140"
-                  image="https://y26uq11r8xr1zyp0d3inciqv-wpengine.netdna-ssl.com/wp-content/uploads/2019/10/35-1-1024x597.jpg"
+                  image={shoval}
                   alt="green iguana"
                   />
-              </div>
-              <Card  sx={{ maxWidth: 180}}>
-
-                  <CardMedia
-                  sx={{}}
-                  component="img"
-                  height="140"
-                  image="https://learn.g2.com/hubfs/Imported%20sitepage%20images/1ZB5giUShe0gw9a6L69qAgsd7wKTQ60ZRoJC5Xq3BIXS517sL6i6mnkAN9khqnaIGzE6FASAusRr7w=w1439-h786.png"
-                  alt="green iguana"
-                  />
-              </Card>
-              <Card  sx={{ maxWidth: 180}}>
-                  <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://y26uq11r8xr1zyp0d3inciqv-wpengine.netdna-ssl.com/wp-content/uploads/2019/10/35-1-1024x597.jpg"
-                  alt="green iguana"
-                  />
-              </Card>
-              <Card  sx={{ maxWidth: 180}}>
-
-                  <CardMedia
-                  sx={{}}
-                  component="img"
-                  height="140"
-                  image="https://learn.g2.com/hubfs/Imported%20sitepage%20images/1ZB5giUShe0gw9a6L69qAgsd7wKTQ60ZRoJC5Xq3BIXS517sL6i6mnkAN9khqnaIGzE6FASAusRr7w=w1439-h786.png"
-                  alt="green iguana"
-                  />
-              </Card>
-              <Card  sx={{ maxWidth: 180}}>
-                  <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://y26uq11r8xr1zyp0d3inciqv-wpengine.netdna-ssl.com/wp-content/uploads/2019/10/35-1-1024x597.jpg"
-                  alt="green iguana"
-                  />
-              </Card>
-              <Card  sx={{ maxWidth: 180}}>
-
-                  <CardMedia
-                  sx={{}}
-                  component="img"
-                  height="140"
-                  image="https://learn.g2.com/hubfs/Imported%20sitepage%20images/1ZB5giUShe0gw9a6L69qAgsd7wKTQ60ZRoJC5Xq3BIXS517sL6i6mnkAN9khqnaIGzE6FASAusRr7w=w1439-h786.png"
-                  alt="green iguana"
-                  />
-              </Card>
-            </Container> */}
-        </Card>
+          </Stack>
+        </LandingCardSection>
 
 
 
-        <Card 
-        sx={{display:'flex',
-        backgroundColor:'lightblue',
-        flexDirection:'column',
-        alignItems:'center',
-        pt:2}}>
+        <LandingCardSection>
                 <Typography variant='h2'>Contact Me</Typography>
                 <div style={{backgroundColor:'lightblue',textAlign:'center'}}>
-                  <Grid container direction={'row'} p={10} spacing={6} justifyContent={'center'} alignItems={'center'}>
+                  <Grid container direction={'row'} p={5} spacing={6} justifyContent={'center'} alignItems={'center'}>
                     <Grid item xs={6}><Typography variant='h5'>shovz12@gmail.com</Typography></Grid>
                     <Grid item xs={6}>
                       <Button href="https://www.linkedin.com/in/shoval-zvulun">Linkedin</Button>
@@ -163,7 +111,7 @@ export const Landing = (props) => {
 
                   </Grid>
                 </div>
-        </Card>
+        </LandingCardSection>
     </div>
   )
 }

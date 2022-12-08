@@ -29,7 +29,7 @@ export const delUser= async (req,res)=>{
 };
 
 export const register = async (req,res)=>{  
-    const {fname,lname,email,password,xp_years,gender} = req.body;
+    const {fname,lname,email,password,my_position,xp_years,gender} = req.body;
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password,salt);
     try{
@@ -41,6 +41,7 @@ export const register = async (req,res)=>{
                     lname,
                     email,
                     password:hashPassword,
+                    my_position,
                     xp_years,
                     gender
               })
