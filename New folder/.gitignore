@@ -1,0 +1,12 @@
+#server
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+
+#client
+
+/client/node_modules
+/client/package-lock
+/client/build
